@@ -13,6 +13,10 @@ template<typename T>
 class List
 {
 public:
+    // first and last ListNode access
+    ListNode first() { return m_first };
+    ListNode last() { return m_last };
+
     // dummy insert methods
     void pushFront(T value) {};
     void pushBack(T value) {};
