@@ -1,9 +1,14 @@
 #pragma once
+#include <aieException.h>
 
 template<typename T>
 class ListNode
 {
 public:
+    // constructor
+    ListNode() {};
+    ListNode(T newValue) : value(newValue) { };
+
     ListNode* next;
     ListNode* prev;
     T value;
@@ -13,11 +18,12 @@ template<typename T>
 class List
 {
 public:
+    List() : m_first(nullptr), m_last(nullptr) { }
     class Iterator
     {
     public:
         // constructors
-        Iterator() {};
+        Iterator() : m_node(nullptr) {};
         Iterator(ListNode<T>* node) : m_node(node) { }
 
         // Iterator methods
@@ -37,11 +43,12 @@ public:
 
     private:
         // pointer to node
-        ListNode<T>* m_node = nullptr;
+        ListNode<T>* m_node;
     };
+
     // first and last ListNode access
-    ListNode first() { return m_first };
-    ListNode last() { return m_last };
+    ListNode<T>* first() { return m_first };
+    ListNode<T>* last() { return m_last };
 
     // Iterators
     Iterator begin() { return Iterator(m_first); }
@@ -54,17 +61,43 @@ public:
         n->next = m_first;
         n->prev = nullptr;
 
-        if (m_last == nullptr) m_last = n;
-        if (m_first != nullptr) m_first->prev = n;
+        if (m_last == nullptr)
+        {
+            m_last = n;
+        }
+        if (m_first != nullptr)
+        {
+            m_first->prev = n;
+        }
     }
-    void pushBack(T value) {};
-    void insert(ListNode node, T value) {};
+
+    void pushBack(T value)
+    {
+        ListNode<T>* n = new ListNode<T>(value);
+        n->next = nullptr;
+        n->prev = m_last;
+
+        if (m_first == nullptr)
+        {
+            m_first = n;
+        }
+        if (m_last != nullptr)
+        {
+            m_last->next = n;
+        }
+    }
+    void insert(ListNode<T>* node, T value) {};
 
     // dummy remove methods
     void popFront()
     {
+        
         ListNode<T> *temp = m_first;
         
+        if (first == nullptr)
+        {
+            aieTHROW("Cannot POP FRONT when list is empty");
+        }
         if (m_first->next)
         {
             m_first->next->prev = m_first->prev;
@@ -73,8 +106,24 @@ public:
 
         delete temp;
     }
-    void popBack() {};
-    void erase(ListNode node) {};
+
+    void popBack()
+    {
+        ListNode<T> *temp = m_last;
+        // aieASSERT(m_last);
+        if (m_last == nullptr)
+        {
+            aieTHROW("Cannot POP BACK when list is empty");
+        }
+        if (m_last->prev)
+        {
+            m_last->prev->next = nullptr;
+        }
+        m_last = m_last->prev;
+
+        delete temp;
+    }
+    void erase(ListNode<T>* node) {};
     void remove(T value) {};
 
     bool isEmpty() { return (begin() == end()); }

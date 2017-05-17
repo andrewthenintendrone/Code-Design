@@ -60,6 +60,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(SolutionDir)\source\aie</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -75,6 +76,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(SolutionDir)\source\aie</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -84,9 +86,20 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="source\aie\aieException.cpp" />
+    <ClCompile Include="source\aie\aieLock.cpp" />
+    <ClCompile Include="source\aie\aieLog.cpp" />
+    <ClCompile Include="source\aie\aieMutex.cpp" />
+    <ClCompile Include="source\aie\aieTimer.cpp" />
     <ClCompile Include="source\main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="source\aie\aieException.h" />
+    <ClInclude Include="source\aie\aieLock.h" />
+    <ClInclude Include="source\aie\aieLog.h" />
+    <ClInclude Include="source\aie\aieMutex.h" />
+    <ClInclude Include="source\aie\aieNonCopyable.h" />
+    <ClInclude Include="source\aie\aieTimer.h" />
     <ClInclude Include="source\linkedList.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -13,15 +13,51 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Source Files\aie">
+      <UniqueIdentifier>{ea378f91-bfdb-4327-b850-6ffcb9ae06b8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="source\aie\aieException.cpp">
+      <Filter>Source Files\aie</Filter>
+    </ClCompile>
+    <ClCompile Include="source\aie\aieLock.cpp">
+      <Filter>Source Files\aie</Filter>
+    </ClCompile>
+    <ClCompile Include="source\aie\aieLog.cpp">
+      <Filter>Source Files\aie</Filter>
+    </ClCompile>
+    <ClCompile Include="source\aie\aieMutex.cpp">
+      <Filter>Source Files\aie</Filter>
+    </ClCompile>
+    <ClCompile Include="source\aie\aieTimer.cpp">
+      <Filter>Source Files\aie</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\linkedList.h">
       <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\aie\aieException.h">
+      <Filter>Source Files\aie</Filter>
+    </ClInclude>
+    <ClInclude Include="source\aie\aieLock.h">
+      <Filter>Source Files\aie</Filter>
+    </ClInclude>
+    <ClInclude Include="source\aie\aieLog.h">
+      <Filter>Source Files\aie</Filter>
+    </ClInclude>
+    <ClInclude Include="source\aie\aieMutex.h">
+      <Filter>Source Files\aie</Filter>
+    </ClInclude>
+    <ClInclude Include="source\aie\aieNonCopyable.h">
+      <Filter>Source Files\aie</Filter>
+    </ClInclude>
+    <ClInclude Include="source\aie\aieTimer.h">
+      <Filter>Source Files\aie</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
