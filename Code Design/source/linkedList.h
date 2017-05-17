@@ -13,6 +13,32 @@ template<typename T>
 class List
 {
 public:
+    class Iterator
+    {
+    public:
+        // constructors
+        Iterator() {};
+        Iterator(ListNode<T>* node) : m_node(node) { }
+
+        // Iterator methods
+        void operator ++ () { m_node = m_node->next; }
+        void operator ++ (int) { m_node = m_node->next; }
+
+        void operator -- () { m_node = m_node->prev; }
+        void operator -- (int) { m_node = m_node->prev; }
+
+        T& operator * () { return m_node->value; }
+        T* operator -> () { return &m_node->value; }
+
+        bool operator == (const Iterator& rhs) { return (m_node == rhs.m_node); }
+        bool operator != (const Iterator& rhs) { return (m_node != rhs.m_node); }
+
+        ListNode<T>* getNode() { return m_node; }
+
+    private:
+        // pointer to node
+        ListNode<T>* m_node = nullptr;
+    };
     // first and last ListNode access
     ListNode first() { return m_first };
     ListNode last() { return m_last };
