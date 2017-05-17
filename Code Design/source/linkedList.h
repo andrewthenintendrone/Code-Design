@@ -48,7 +48,15 @@ public:
     Iterator end() { return Iterator(nullptr); }
 
     // dummy insert methods
-    void pushFront(T value) {};
+    void pushFront(T value)
+    {
+        ListNode<T>* n = new ListNode<T>(value);
+        n->next = m_first;
+        n->prev = nullptr;
+
+        if (m_last == nullptr) m_last = n;
+        if (m_first != nullptr) m_first->prev = n;
+    }
     void pushBack(T value) {};
     void insert(ListNode node, T value) {};
 
