@@ -61,7 +61,18 @@ public:
     void insert(ListNode node, T value) {};
 
     // dummy remove methods
-    void popFront() {};
+    void popFront()
+    {
+        ListNode<T> *temp = m_first;
+        
+        if (m_first->next)
+        {
+            m_first->next->prev = m_first->prev;
+        }
+        m_first = m_first->next;
+
+        delete temp;
+    }
     void popBack() {};
     void erase(ListNode node) {};
     void remove(T value) {};
