@@ -6,11 +6,11 @@ class ListNode
 {
 public:
     // constructor
-    ListNode() {};
-    ListNode(T newValue) : value(newValue) { };
+    ListNode() { next = nullptr; prev = nullptr; };
+    ListNode(T newValue) : value(newValue) { next = nullptr; prev = nullptr; };
 
-    ListNode* next;
-    ListNode* prev;
+    ListNode<T>* next;
+    ListNode<T>* prev;
     T value;
 };
 
@@ -69,6 +69,8 @@ public:
         {
             m_first->prev = n;
         }
+
+        m_first = n;
     }
 
     void pushBack(T value)
@@ -85,6 +87,8 @@ public:
         {
             m_last->next = n;
         }
+
+        m_last = n;
     }
     void insert(ListNode<T>* node, T value) {};
 
