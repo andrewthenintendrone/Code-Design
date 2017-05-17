@@ -43,6 +43,10 @@ public:
     ListNode first() { return m_first };
     ListNode last() { return m_last };
 
+    // Iterators
+    Iterator begin() { return Iterator(m_first); }
+    Iterator end() { return Iterator(nullptr); }
+
     // dummy insert methods
     void pushFront(T value) {};
     void pushBack(T value) {};
@@ -53,7 +57,8 @@ public:
     void popBack() {};
     void erase(ListNode node) {};
     void remove(T value) {};
-    void remove(func)
+
+    bool isEmpty() { return (begin() == end()); }
 private:
     ListNode<T>* m_first;
     ListNode<T>* m_last;
