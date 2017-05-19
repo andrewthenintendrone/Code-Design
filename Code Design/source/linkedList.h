@@ -7,10 +7,10 @@ class ListNode
 public:
     // constructor
     ListNode() { next = nullptr; prev = nullptr; };
-    ListNode(T newValue) : value(newValue) { next = nullptr; prev = nullptr; };
+    ListNode(T newValue) : value(newValue), next(nullptr), prev(nullptr) {};
 
-    ListNode<T>* next;
-    ListNode<T>* prev;
+    ListNode* next;
+    ListNode* prev;
     T value;
 };
 
@@ -18,7 +18,7 @@ template<typename T>
 class List
 {
 public:
-    List() : m_first(nullptr), m_last(nullptr) { }
+    List() : m_front(nullptr), m_back(nullptr) { }
     class Iterator
     {
     public:
@@ -47,91 +47,95 @@ public:
     };
 
     // first and last ListNode access
-    ListNode<T>* first() { return m_first };
-    ListNode<T>* last() { return m_last };
+    ListNode<T>* first() { return m_front };
+    ListNode<T>* last() { return m_back };
 
     // Iterators
-    Iterator begin() { return Iterator(m_first); }
+    Iterator begin() { return Iterator(m_front); }
     Iterator end() { return Iterator(nullptr); }
 
     // dummy insert methods
     void pushFront(T value)
     {
-        ListNode<T>* n = new ListNode<T>(value);
-        n->next = m_first;
+        ListNode<T> *n = new ListNode<T>(value);
+        n->next = m_front;
         n->prev = nullptr;
 
-        if (m_last == nullptr)
+        if (isEmpty())
         {
-            m_last = n;
+            m_back = n;
         }
-        if (m_first != nullptr)
+        if (m_front != nullptr)
         {
-            m_first->prev = n;
+            m_front->prev = n;
         }
 
-        m_first = n;
+        m_front = n;
     }
 
     void pushBack(T value)
     {
-        ListNode<T>* n = new ListNode<T>(value);
+        ListNode<T> *n = new ListNode<T>(value);
         n->next = nullptr;
-        n->prev = m_last;
+        n->prev = m_back;
 
-        if (m_first == nullptr)
+        if (isEmpty())
         {
-            m_first = n;
+            m_front = n;
         }
-        if (m_last != nullptr)
+        if (m_back != nullptr)
         {
-            m_last->next = n;
+            m_back->next = n;
         }
 
-        m_last = n;
+        m_back = n;
     }
     void insert(ListNode<T>* node, T value) {};
 
     // dummy remove methods
     void popFront()
     {
+        ListNode<T> *temp = m_front;
         
-        ListNode<T> *temp = m_first;
-        
-        if (first == nullptr)
+        if (isEmpty())
         {
             aieTHROW("Cannot POP FRONT when list is empty");
         }
-        if (m_first->next)
+        if (m_front->next)
         {
-            m_first->next->prev = m_first->prev;
+            m_front->next->prev = m_front->prev;
         }
-        m_first = m_first->next;
+        m_front = m_front->next;
 
         delete temp;
     }
 
     void popBack()
     {
-        ListNode<T> *temp = m_last;
-        // aieASSERT(m_last);
-        if (m_last == nullptr)
+        ListNode<T> *temp = m_back;
+
+        if (isEmpty())
         {
             aieTHROW("Cannot POP BACK when list is empty");
         }
-        if (m_last->prev)
+        if (m_back->prev)
         {
-            m_last->prev->next = nullptr;
+            m_back->prev->next = nullptr;
         }
-        m_last = m_last->prev;
+        else
+        {
+            // list only had one element so clear the list
+            m_front = nullptr;
+        }
+        m_back = m_back->prev;
 
         delete temp;
     }
     void erase(ListNode<T>* node) {};
     void remove(T value) {};
 
-    bool isEmpty() { return (begin() == end()); }
+    bool isEmpty() { return m_front == nullptr; }
 private:
-    ListNode<T>* m_first;
-    ListNode<T>* m_last;
+    ListNode<T>* m_front;
+    ListNode<T>* m_back;
 };

@@ -40,16 +40,22 @@ int main()
         aieLOG("Application started");
 
         List<char> myList;
-        myList.pushBack('A');
-        myList.pushBack('N');
-        myList.pushBack('D');
-        myList.pushBack('R');
-        myList.pushBack('E');
-        myList.pushBack('W');
 
+        //std::cout << (myList.isEmpty() ? "empty" : "not empty") << std::endl;
+
+        //std::cout << (myList.isEmpty() ? "empty" : "not empty") << std::endl;
+
+        myList.pushFront('d');
+        myList.pushBack('r');
+        myList.pushFront('n');
+        myList.pushBack('e');
+        myList.pushFront('A');
+        myList.pushBack('w');
+
+        //std::cout << (myList.isEmpty() ? "empty" : "not empty") << std::endl;
         for (auto iter = myList.begin(); iter != myList.end(); iter++)
         {
-            std::cout << *iter;
+            std::cout << iter.getNode()->value;
         }
         std::cout << std::endl;
 
@@ -59,6 +65,9 @@ int main()
         myList.popBack();
         myList.popBack();
         myList.popBack();
+
+        aieASSERT(myList.isEmpty());
+        //std::cout << (myList.isEmpty() ? "empty" : "not empty") << std::endl;
     }
     catch (const std::exception& e)
     {
