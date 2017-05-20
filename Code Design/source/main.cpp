@@ -1,5 +1,6 @@
 #include <iostream>
 #include "linkedList.h"
+#include "sumTo.h"
 #include "aieLog.h"
 #include "aieException.h"
 #include <Windows.h>
@@ -27,6 +28,9 @@ int main()
 {
     try
     {
+        int n = sumTo(100);
+        std::cout << n << std::endl;
+
         g_exeFolder = getExecutableFolder();
 
         // Specify an ASCII log file for our application to use. This will be called
@@ -41,18 +45,16 @@ int main()
 
         List<char> myList;
 
-        //std::cout << (myList.isEmpty() ? "empty" : "not empty") << std::endl;
+        std::cout << "List is " << (myList.isEmpty() ? "empty" : "not empty") << std::endl;
 
-        //std::cout << (myList.isEmpty() ? "empty" : "not empty") << std::endl;
-
-        myList.pushFront('d');
+        myList.pushBack('A');
+        myList.pushBack('n');
+        myList.pushBack('d');
         myList.pushBack('r');
-        myList.pushFront('n');
         myList.pushBack('e');
-        myList.pushFront('A');
         myList.pushBack('w');
 
-        //std::cout << (myList.isEmpty() ? "empty" : "not empty") << std::endl;
+        std::cout << "List is " << (myList.isEmpty() ? "empty" : "not empty") << std::endl;
         for (auto iter = myList.begin(); iter != myList.end(); iter++)
         {
             std::cout << iter.getNode()->value;
@@ -67,7 +69,7 @@ int main()
         myList.popBack();
 
         aieASSERT(myList.isEmpty());
-        //std::cout << (myList.isEmpty() ? "empty" : "not empty") << std::endl;
+        std::cout << "List is " << (myList.isEmpty() ? "empty" : "not empty") << std::endl;
     }
     catch (const std::exception& e)
     {
