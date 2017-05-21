@@ -54,14 +54,14 @@ public:
     Iterator begin() { return Iterator(m_front); }
     Iterator end() { return Iterator(nullptr); }
 
-    // dummy insert methods
+    // adds a node to the front of the list
     void pushFront(T value)
     {
         ListNode<T> *n = new ListNode<T>(value);
         n->next = m_front;
         n->prev = nullptr;
 
-        if (isEmpty())
+        if (empty())
         {
             m_back = n;
         }
@@ -73,13 +73,14 @@ public:
         m_front = n;
     }
 
+    // adds a node to the back of the list
     void pushBack(T value)
     {
         ListNode<T> *n = new ListNode<T>(value);
         n->next = nullptr;
         n->prev = m_back;
 
-        if (isEmpty())
+        if (empty())
         {
             m_front = n;
         }
@@ -90,16 +91,35 @@ public:
 
         m_back = n;
     }
-    void insert(ListNode<T>* node, T value) {};
 
-    // dummy remove methods
+    // adds a node after the specified iterator
+    void insert(Iterator& iter, T value)
+    {
+        ListNode<T> *n = new ListNode<T>(value);
+        ListNode<T> *current = iter.getNode();
+
+        n->next = current->next;
+        n->prev = current;
+        current->next = n;
+
+        if (n->next != nullptr)
+        {
+            n->next->prev = n;
+        }
+        else
+        {
+            m_back = n;
+        }
+    };
+
+    // removes a node from the front of the list
     void popFront()
     {
         ListNode<T> *temp = m_front;
         
-        if (isEmpty())
+        if (empty())
         {
-            aieTHROW("Cannot POP FRONT when list is empty");
+            aieTHROW("Cannot use popFront on an empty list");
         }
         if (m_front->next)
         {
@@ -110,13 +130,14 @@ public:
         delete temp;
     }
 
+    // // removes a node from the back of the list
     void popBack()
     {
         ListNode<T> *temp = m_back;
 
-        if (isEmpty())
+        if (empty())
         {
-            aieTHROW("Cannot POP BACK when list is empty");
+            aieTHROW("Cannot use popBack on an empty list");
         }
         if (m_back->prev)
         {
@@ -131,10 +152,21 @@ public:
 
         delete temp;
     }
+
+    // removes a node 
     void erase(ListNode<T>* node) {};
     void remove(T value) {};
 
-    bool isEmpty() { return m_front == nullptr; }
+    // removes all elements from the list
+    void clear()
+    {
+        while (!empty())
+        {
+            popBack();
+        }
+    }
+
+    bool empty() { return m_front == nullptr; }
 private:
     ListNode<T>* m_front;
     ListNode<T>* m_back;
