@@ -156,25 +156,30 @@ public:
     // removes a node 
     void eraseNode(ListNode<T>* node)
     {
-        // unlink surrounding nodes
+        // if there is a next node
         if (node->next)
         {
             node->next->prev = node->prev;
+            // set new front if necessary
             if (node == m_front)
             {
                 m_front = node->next;
             }
         }
+        // if there is a previous node
         if (node->prev)
         {
             node->prev->next = node->next;
+            // set new back if necessary
             if (node == m_back)
             {
                 m_back = node->prev;
             }
         }
+        // if there are no other nodes
         if (!node->next && !node->prev)
         {
+            // set front and back to nullptr
             m_front = nullptr;
             m_back = nullptr;
         }
