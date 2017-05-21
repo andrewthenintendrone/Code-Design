@@ -100,6 +100,7 @@
     <ClInclude Include="source\aie\aieMutex.h" />
     <ClInclude Include="source\aie\aieNonCopyable.h" />
     <ClInclude Include="source\aie\aieTimer.h" />
+    <ClInclude Include="source\digitalRoot.h" />
     <ClInclude Include="source\linkedList.h" />
     <ClInclude Include="source\sumTo.h" />
   </ItemGroup>

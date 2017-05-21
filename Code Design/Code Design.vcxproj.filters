@@ -62,5 +62,8 @@
     <ClInclude Include="source\sumTo.h">
       <Filter>Source Files</Filter>
     </ClInclude>
+    <ClInclude Include="source\digitalRoot.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

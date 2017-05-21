@@ -1,6 +1,7 @@
 #include <iostream>
 #include "linkedList.h"
 #include "sumTo.h"
+#include "digitalRoot.h"
 #include "aieLog.h"
 #include "aieException.h"
 #include <Windows.h>
@@ -24,6 +25,22 @@ std::string getExecutableFolder()
     return buffer;
 }
 
+int letterToNumber(char letter)
+{
+    if (letter >= 'a' && letter <= 'z')
+    {
+        return (int)(letter - 'a' + 1);
+    }
+    else if (letter >= 'A' && letter <= 'Z')
+    {
+        return (int)(letter - 'A' + 1);
+    }
+    else
+    {
+        return 0;
+    }
+}
+
 int main()
 {
     try
@@ -43,17 +60,12 @@ int main()
         List<char> myList;
 
         myList.pushBack('A');
-        myList.pushBack('N');
-        myList.pushBack('D');
-        myList.pushBack('R');
-        myList.pushBack('E');
-        myList.pushBack('W');
+        myList.pushBack('n');
+        myList.pushBack('d');
+        myList.pushBack('r');
+        myList.pushBack('e');
+        myList.pushBack('w');
 
-        for (auto iter = myList.begin(); iter != myList.end(); iter++)
-        {
-            myList.insert(iter, '-');
-            iter++;
-        }
         for (auto iter = myList.begin(); iter != myList.end(); iter++)
         {
             std::cout << iter.getNode()->value;
@@ -63,6 +75,8 @@ int main()
         myList.clear();
 
         aieASSERT(myList.empty());
+
+        std::cout << getDigitalRoot(123456) << std::endl;
     }
     catch (const std::exception& e)
     {
