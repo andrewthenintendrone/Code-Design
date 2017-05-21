@@ -59,5 +59,8 @@
     <ClInclude Include="source\aie\aieTimer.h">
       <Filter>Source Files\aie</Filter>
     </ClInclude>
+    <ClInclude Include="source\sumTo.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

@@ -101,6 +101,7 @@
     <ClInclude Include="source\aie\aieNonCopyable.h" />
     <ClInclude Include="source\aie\aieTimer.h" />
     <ClInclude Include="source\linkedList.h" />
+    <ClInclude Include="source\sumTo.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

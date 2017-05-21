@@ -1,5 +1,6 @@
 #include <iostream>
 #include "linkedList.h"
+#include "sumTo.h"
 #include "aieLog.h"
 #include "aieException.h"
 #include <Windows.h>
@@ -67,7 +68,7 @@ int main()
     {
         std::cout << "\n\n\n" << e.what() << "\n\n\n";
     }
-    
+
     catch (const aie::Exception& e)
     {
         std::cout << "\n\n\n" << e.reason() << "\n\n\n";
