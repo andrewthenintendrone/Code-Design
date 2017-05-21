@@ -77,15 +77,7 @@ int main()
 
         std::cout << std::endl;
 
-        myList.eraseNode(myList.first());
-        myList.eraseNode(myList.first());
-        myList.eraseNode(myList.first());
-        myList.eraseNode(myList.first());
-        myList.eraseNode(myList.first());
-        myList.eraseNode(myList.first());
-
-        myList.pushBack('p');
-        std::cout << myList.first()->value;
+        myList.clear();
 
         aieASSERT(myList.empty());
     }

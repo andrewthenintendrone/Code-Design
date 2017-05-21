@@ -115,42 +115,13 @@ public:
     // removes a node from the front of the list
     void popFront()
     {
-        ListNode<T> *temp = m_front;
-        
-        if (empty())
-        {
-            aieTHROW("Cannot use popFront on an empty list");
-        }
-        if (m_front->next)
-        {
-            m_front->next->prev = m_front->prev;
-        }
-        m_front = m_front->next;
-
-        delete temp;
+        eraseNode(m_front);
     }
 
     // // removes a node from the back of the list
     void popBack()
     {
-        ListNode<T> *temp = m_back;
-
-        if (empty())
-        {
-            aieTHROW("Cannot use popBack on an empty list");
-        }
-        if (m_back->prev)
-        {
-            m_back->prev->next = nullptr;
-        }
-        else
-        {
-            // list only had one element so clear the list
-            m_front = nullptr;
-        }
-        m_back = m_back->prev;
-
-        delete temp;
+        eraseNode(m_back);
     }
 
     // removes a node 
