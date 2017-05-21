@@ -6,6 +6,10 @@
 #include "aieException.h"
 #include <Windows.h>
 
+#ifndef _DEBUG
+#undef aieASSERT
+#endif
+
 std::string g_exeFolder;
 
 /*******************************************************************************
@@ -70,13 +74,20 @@ int main()
         {
             std::cout << iter.getNode()->value;
         }
+
         std::cout << std::endl;
 
-        myList.clear();
+        myList.eraseNode(myList.first());
+        myList.eraseNode(myList.first());
+        myList.eraseNode(myList.first());
+        myList.eraseNode(myList.first());
+        myList.eraseNode(myList.first());
+        myList.eraseNode(myList.first());
+
+        myList.pushBack('p');
+        std::cout << myList.first()->value;
 
         aieASSERT(myList.empty());
-
-        std::cout << getDigitalRoot(123456) << std::endl;
     }
     catch (const std::exception& e)
     {

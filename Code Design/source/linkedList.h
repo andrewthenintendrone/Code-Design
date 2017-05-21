@@ -47,8 +47,8 @@ public:
     };
 
     // first and last ListNode access
-    ListNode<T>* first() { return m_front };
-    ListNode<T>* last() { return m_back };
+    ListNode<T>* first() { return m_front; }
+    ListNode<T>* last() { return m_back; }
 
     // Iterators
     Iterator begin() { return Iterator(m_front); }
@@ -154,7 +154,33 @@ public:
     }
 
     // removes a node 
-    void erase(ListNode<T>* node) {};
+    void eraseNode(ListNode<T>* node)
+    {
+        // unlink surrounding nodes
+        if (node->next)
+        {
+            node->next->prev = node->prev;
+            if (node == m_front)
+            {
+                m_front = node->next;
+            }
+        }
+        if (node->prev)
+        {
+            node->prev->next = node->next;
+            if (node == m_back)
+            {
+                m_back = node->prev;
+            }
+        }
+        if (!node->next && !node->prev)
+        {
+            m_front = nullptr;
+            m_back = nullptr;
+        }
+        delete node;
+    };
+
     void remove(T value) {};
 
     // removes all elements from the list
@@ -167,6 +193,10 @@ public:
     }
 
     bool empty() { return m_front == nullptr; }
+
+    // overloads
+
+
 private:
     ListNode<T>* m_front;
     ListNode<T>* m_back;
