@@ -65,8 +65,5 @@
     <ClInclude Include="source\digitalRoot.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="source\dynamicArray.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
   </ItemGroup>
 </Project>
