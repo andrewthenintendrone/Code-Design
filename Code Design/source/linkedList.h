@@ -6,7 +6,7 @@ class ListNode
 {
 public:
     // constructor
-    ListNode() : next(nullptr), prev(nullptr), size(0) {};
+    ListNode() : next(nullptr), prev(nullptr) {};
     ListNode(T newValue) : value(newValue), next(nullptr), prev(nullptr) {};
 
     ListNode* next;
@@ -18,7 +18,7 @@ template<typename T>
 class List
 {
 public:
-    List() : m_front(nullptr), m_back(nullptr) { }
+    List() : m_front(nullptr), m_back(nullptr), size(0) { }
     class Iterator
     {
     public:
@@ -71,6 +71,8 @@ public:
     {
         ListNode<T> *n = new ListNode<T>(value);
         ListNode<T> *currentNode = iter.getNode();
+        size++;
+
         if (currentNode == nullptr)
         {
             currentNode = n;
@@ -91,8 +93,6 @@ public:
         {
             m_front = n;
         }
-
-        size++;
     };
 
     // adds a node after the specified iterator
@@ -100,6 +100,8 @@ public:
     {
         ListNode<T> *n = new ListNode<T>(value);
         ListNode<T> *currentNode = iter.getNode();
+        size++;
+
         if (currentNode == nullptr)
         {
             currentNode = n;
@@ -120,8 +122,6 @@ public:
         {
             m_back = n;
         }
-
-        size++;
     };
 
     // removes a node from the front of the list
@@ -172,7 +172,22 @@ public:
         delete node;
     };
 
-    void remove(T value) {};
+    // removes values that match the input
+    void remove(T input)
+    {
+        List<T> temp;
+
+
+        for (auto iter = begin(); iter != end(); iter++)
+        {
+            if (iter.getNode()->value != input)
+            {
+                temp.pushBack(iter.getNode()->value);
+            }
+        }
+
+        *this = temp;
+    };
 
     // removes all elements from the list
     void clear()
@@ -188,21 +203,20 @@ public:
     // returns the number of nodes in the List
     unsigned int count()
     {
-        if (empty())
-        {
-            return 0;
-        }
-        ListNode<T>* node = m_front;
-        unsigned int total = 1;
-
-        while (node->next)
-        {
-            total++;
-            node = node->next;
-        }
-        return total;
+        return size;
     }
 
+    // overloads
+
+    // sets the list to another list
+    void operator = (List* newList)
+    {
+        clear();
+        for (auto iter = newList->begin(); iter != newList->end(); iter++)
+        {
+            pushBack(iter.getNode()->value);
+        }
+    }
 
 private:
     ListNode<T>* m_front;

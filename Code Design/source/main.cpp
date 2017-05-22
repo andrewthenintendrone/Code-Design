@@ -63,12 +63,14 @@ int main()
 
         List<char> myList;
 
-        myList.pushBack('A');
-        myList.pushBack('n');
+        myList.pushBack('a');
+        myList.pushBack('b');
+        myList.pushBack('c');
         myList.pushBack('d');
-        myList.pushBack('r');
         myList.pushBack('e');
-        myList.pushBack('w');
+        myList.pushBack('f');
+        myList.pushBack('g');
+        myList.pushBack('h');
 
         for (auto iter = myList.begin(); iter != myList.end(); iter++)
         {
