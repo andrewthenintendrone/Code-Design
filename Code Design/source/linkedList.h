@@ -1,6 +1,9 @@
 #pragma once
 #include <aieException.h>
 
+//################################################//
+//  List Node Class                               //
+//################################################//
 template<typename T>
 class ListNode
 {
@@ -14,11 +17,16 @@ public:
     T value;
 };
 
+//################################################//
+//  Linked List Class                             //
+//################################################//
 template<typename T>
 class List
 {
 public:
-    List() : m_front(nullptr), m_back(nullptr), size(0) { }
+    //################################################//
+    //  Iterator Class                                //
+    //################################################//
     class Iterator
     {
     public:
@@ -39,34 +47,29 @@ public:
         bool operator == (const Iterator& rhs) { return (m_node == rhs.m_node); }
         bool operator != (const Iterator& rhs) { return (m_node != rhs.m_node); }
 
+        // public access to ListNode
         ListNode<T>* getNode() { return m_node; }
 
     private:
-        // pointer to node
         ListNode<T>* m_node;
     };
 
-    // first and last ListNode access
-    ListNode<T>* first() { return m_front; }
-    ListNode<T>* last() { return m_back; }
+    // constructor
+    List() : m_front(nullptr), m_back(nullptr), size(0) { }
 
-    // Iterators
-    Iterator begin() { return Iterator(m_front); }
-    Iterator end() { return Iterator(nullptr); }
-
-    // adds a node to the front of the list
+    // adds a ListNode to the front of the List
     void pushFront(T value)
     {
         insertBefore(Iterator(m_front), value);
     }
 
-    // adds a node to the back of the list
+    // adds a ListNode to the back of the List
     void pushBack(T value)
     {
         insertAfter(Iterator(m_back), value);
     }
 
-    // adds a node before the specified iterator
+    // inserts a ListNode before the specified Iterators ListNode
     void insertBefore(Iterator iter, T value)
     {
         ListNode<T> *n = new ListNode<T>(value);
@@ -95,7 +98,7 @@ public:
         }
     };
 
-    // adds a node after the specified iterator
+    // inserts a ListNode after the specified Iterators ListNode
     void insertAfter(Iterator iter, T value)
     {
         ListNode<T> *n = new ListNode<T>(value);
@@ -124,19 +127,19 @@ public:
         }
     };
 
-    // removes a node from the front of the list
+    // removes a ListNode from the front of the List
     void popFront()
     {
         erase(m_front);
     }
 
-    // // removes a node from the back of the list
+    // removes a ListNode from the back of the List
     void popBack()
     {
         erase(m_back);
     }
 
-    // removes a node 
+    // removes the specified Iterators ListNode 
     void erase(Iterator iter)
     {
         ListNode<T>* node = iter.getNode();
@@ -174,7 +177,7 @@ public:
         delete node;
     };
 
-    // removes values that match the input
+    // removes ListNodes containing values matching the input
     void remove(T input)
     {
         List<T> temp;
@@ -190,7 +193,7 @@ public:
         *this = temp;
     };
 
-    // remove with predicate
+    // removes ListNodes that satisfy a predicate
     void remove(bool(*predicate)(T input))
     {
         List<T> temp;
@@ -206,7 +209,7 @@ public:
         *this = temp;
     }
 
-    // removes all elements from the list
+    // removes all ListNodes from the List
     void clear()
     {
         while (!empty())
@@ -215,17 +218,19 @@ public:
         }
     }
 
-    bool empty() { return m_front == nullptr; }
+    // returns true if the List is has no ListNodes
+    bool empty()
+    {
+        return m_front == nullptr;
+    }
 
-    // returns the number of nodes in the List
+    // returns the number of ListNodes in the List
     unsigned int count()
     {
         return size;
     }
 
-    // overloads
-
-    // sets the list to another list
+    // overloaded = operator
     void operator = (List* newList)
     {
         clear();
@@ -234,6 +239,14 @@ public:
             pushBack(iter.getNode()->value);
         }
     }
+
+    // public access to private ListNodes
+    ListNode<T>* first() { return m_front; }
+    ListNode<T>* last() { return m_back; }
+
+    // Iterators
+    Iterator begin() { return Iterator(m_front); }
+    Iterator end() { return Iterator(nullptr); }
 
 private:
     ListNode<T>* m_front;
