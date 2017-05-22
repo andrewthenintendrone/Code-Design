@@ -45,10 +45,18 @@ int letterToNumber(char letter)
     }
 }
 
+template<typename T>
+// returns true if input is even
+bool isEven(T input)
+{
+    return (input % 2 == 0);
+}
+
 int main()
 {
     try
     {
+        // get executable folder
         g_exeFolder = getExecutableFolder();
 
         // Specify an ASCII log file for our application to use. This will be called
@@ -59,27 +67,45 @@ int main()
         // also record full details into the log.
         aie::Exception::enableLogging(true);
 
+        // log that the program has started
         aieLOG("Application started");
 
-        List<char> myList;
+        // create List of int
+        List<int> myList;
 
-        myList.pushBack('a');
-        myList.pushBack('b');
-        myList.pushBack('c');
-        myList.pushBack('d');
-        myList.pushBack('e');
-        myList.pushBack('f');
-        myList.pushBack('g');
-        myList.pushBack('h');
+        // push some numbers onto the back
+        myList.pushBack(5);
+        myList.pushBack(6);
+        myList.pushBack(7);
+        myList.pushBack(8);
 
+        // push some more numbers onto the front
+        myList.pushFront(4);
+        myList.pushFront(3);
+        myList.pushFront(2);
+        myList.pushFront(1);
+
+        // create function pointer
+        bool(*predicate)(int);
+        predicate = isEven;
+
+        // remove values from list that meet the predicate
+        myList.remove(predicate);
+
+        // remove any 7s
+        myList.remove(7);
+
+        // print out each value using an iterator
         for (auto iter = myList.begin(); iter != myList.end(); iter++)
         {
-            std::cout << iter.getNode()->value;
+            std::cout << iter.getNode()->value << " ";
         }
-
         std::cout << std::endl;
-        std::cout << myList.count() << std::endl;
 
+        // print out the number of elements
+        std::cout << "There are " << myList.count() << " elements." << std::endl;
+
+        // clear the list
         myList.clear();
 
         aieASSERT(myList.empty());

@@ -127,18 +127,20 @@ public:
     // removes a node from the front of the list
     void popFront()
     {
-        eraseNode(m_front);
+        erase(m_front);
     }
 
     // // removes a node from the back of the list
     void popBack()
     {
-        eraseNode(m_back);
+        erase(m_back);
     }
 
     // removes a node 
-    void eraseNode(ListNode<T>* node)
+    void erase(Iterator iter)
     {
+        ListNode<T>* node = iter.getNode();
+
         // if there is a next node
         if (node->next)
         {
@@ -177,7 +179,6 @@ public:
     {
         List<T> temp;
 
-
         for (auto iter = begin(); iter != end(); iter++)
         {
             if (iter.getNode()->value != input)
@@ -188,6 +189,22 @@ public:
 
         *this = temp;
     };
+
+    // remove with predicate
+    void remove(bool(*predicate)(T input))
+    {
+        List<T> temp;
+
+        for (auto iter = begin(); iter != end(); iter++)
+        {
+            if (!predicate(iter.getNode()->value))
+            {
+                temp.pushBack(iter.getNode()->value);
+            }
+        }
+
+        *this = temp;
+    }
 
     // removes all elements from the list
     void clear()
