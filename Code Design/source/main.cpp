@@ -1,5 +1,6 @@
 #include <iostream>
 #include "linkedList.h"
+#include "treeNode.h"
 #include "sumTo.h"
 #include "digitalRoot.h"
 #include "aieLog.h"
@@ -69,6 +70,8 @@ int main()
 
         // log that the program has started
         aieLOG("Application started");
+
+        treeNode<int> givingTree(1);
 
         // create List of int
         List<int> myList;
