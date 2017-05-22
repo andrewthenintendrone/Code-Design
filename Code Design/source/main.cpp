@@ -76,6 +76,7 @@ int main()
         }
 
         std::cout << std::endl;
+        std::cout << myList.count() << std::endl;
 
         myList.clear();
 

@@ -6,7 +6,7 @@ class ListNode
 {
 public:
     // constructor
-    ListNode() { next = nullptr; prev = nullptr; };
+    ListNode() : next(nullptr), prev(nullptr), size(0) {};
     ListNode(T newValue) : value(newValue), next(nullptr), prev(nullptr) {};
 
     ListNode* next;
@@ -57,52 +57,62 @@ public:
     // adds a node to the front of the list
     void pushFront(T value)
     {
-        ListNode<T> *n = new ListNode<T>(value);
-        n->next = m_front;
-        n->prev = nullptr;
-
-        if (empty())
-        {
-            m_back = n;
-        }
-        if (m_front != nullptr)
-        {
-            m_front->prev = n;
-        }
-
-        m_front = n;
+        insertBefore(Iterator(m_front), value);
     }
 
     // adds a node to the back of the list
     void pushBack(T value)
     {
-        ListNode<T> *n = new ListNode<T>(value);
-        n->next = nullptr;
-        n->prev = m_back;
+        insertAfter(Iterator(m_back), value);
+    }
 
-        if (empty())
+    // adds a node before the specified iterator
+    void insertBefore(Iterator iter, T value)
+    {
+        ListNode<T> *n = new ListNode<T>(value);
+        ListNode<T> *currentNode = iter.getNode();
+        if (currentNode == nullptr)
+        {
+            currentNode = n;
+            m_front = n;
+            m_back = n;
+            return;
+        }
+
+        n->prev = currentNode->prev;
+        n->next = currentNode;
+        currentNode->prev = n;
+
+        if (n->prev)
+        {
+            n->prev->next = n;
+        }
+        else
         {
             m_front = n;
         }
-        if (m_back != nullptr)
-        {
-            m_back->next = n;
-        }
 
-        m_back = n;
-    }
+        size++;
+    };
 
     // adds a node after the specified iterator
-    void insert(Iterator& iter, T value)
+    void insertAfter(Iterator iter, T value)
     {
         ListNode<T> *n = new ListNode<T>(value);
-        ListNode<T> *current = iter.getNode();
+        ListNode<T> *currentNode = iter.getNode();
+        if (currentNode == nullptr)
+        {
+            currentNode = n;
+            m_front = n;
+            m_back = n;
+            return;
+        }
 
-        n->next = current->next;
-        n->prev = current;
-        current->next = n;
+        n->next = currentNode->next;
+        n->prev = currentNode;
+        currentNode->next = n;
 
-        if (n->next != nullptr)
+        if (n->next)
         {
             n->next->prev = n;
         }
@@ -110,6 +120,8 @@ public:
         {
             m_back = n;
         }
+
+        size++;
     };
 
     // removes a node from the front of the list
@@ -154,6 +166,9 @@ public:
             m_front = nullptr;
             m_back = nullptr;
         }
+
+        size--;
+
         delete node;
     };
 
@@ -170,10 +185,27 @@ public:
 
     bool empty() { return m_front == nullptr; }
 
-    // overloads
+    // returns the number of nodes in the List
+    unsigned int count()
+    {
+        if (empty())
+        {
+            return 0;
+        }
+        ListNode<T>* node = m_front;
+        unsigned int total = 1;
+
+        while (node->next)
+        {
+            total++;
+            node = node->next;
+        }
+        return total;
+    }
 
 
 private:
     ListNode<T>* m_front;
     ListNode<T>* m_back;
+    unsigned int size;
 };
