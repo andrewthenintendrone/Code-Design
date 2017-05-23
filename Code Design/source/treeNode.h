@@ -1,9 +1,11 @@
 #pragma once
+#include <aieException.h>
 
 template<typename T>
 class treeNode
 {
 public:
+    // constructor
     treeNode(T newValue) : value(newValue), parent(nullptr), left(nullptr), right(nullptr) {}
 
     // returns the treeNodes value
@@ -12,24 +14,45 @@ public:
         return value;
     }
 
-    // returns the parent
+    // returns a pointer to the parent treeNode
     treeNode* getParent()
     {
         return parent;
     }
 
-    // returns the left treeNode
+    // returns a pointer to the left child treeNode
     treeNode* getLeft()
     {
         return left;
     }
 
-    // returns the right treeNode
+    // returns a pointer to the right child treeNode
     treeNode* getRight()
     {
         return right;
     }
 
+    // returns a pointer to the treeNode at the root of the tree
+    treeNode* getRoot()
+    {
+        treeNode* root = this;
+
+        while (root->parent != nullptr)
+        {
+            root = root->parent;
+        }
+
+        return root;
+    }
+
+    // returns a pointer to the only child treeNode
+    treeNode* getOnlyChild()
+    {
+        aieASSERT(numChildren() == 1);
+        return (left != nullptr ? left : right);
+    }
+
+    // maybe change this
     // returns the number of children from 0 to 2
     unsigned int numChildren()
     {
@@ -44,58 +67,57 @@ public:
         return 0;
     }
 
-    // returns true if the treeNode is a leaf
-    bool isLeaf()
-    {
-        return(numChildren() == 0);
-    }
 
-    // inserts a new treeNode automatically
+    // takes a value and finds a place to create a new treeNode for it
     void insert(T newValue)
     {
-        // find place for value
+        // inserted value is lower than this treeNodes value
         if (newValue < value)
         {
-            if (left == nullptr)
+            if (left)
+            {
+                // recur this function
+                left->insert(newValue);
+            }
+            else
             {
                 insertLeft(newValue);
             }
-            else
-            {
-                left->insert(newValue);
-            }
         }
+        // inserted value is equal to or higher than this treeNodes value
         else
         {
-            if (right == nullptr)
+            if (right)
             {
-                insertRight(newValue);
+                // recur this function
+                right->insert(newValue);
             }
             else
             {
-                right->insert(newValue);
+                insertRight(newValue);
             }
         }
     }
 
-    // adds a new treeNode as the left child
+    // creates a new treeNode and sets it as the left child
     void insertLeft(T newValue)
     {
         left = new treeNode(newValue);
         left->parent = this;
     }
 
-    // adds a new treeNode as the right child
+    // creates a new treeNode and sets it as the right child
     void insertRight(T newValue)
     {
         right = new treeNode(newValue);
         right->parent = this;
     }
 
-    // removes the treeNode from the tree
+    // removes this treeNode from the tree
     void remove()
     {
-        if (isLeaf())
+        // leaf
+        if (numChildren() == 0)
         {
             if (parent != nullptr)
             {
@@ -107,39 +129,47 @@ public:
                 {
                     parent->right = nullptr;
                 }
-                std::cout << "Deleting a node with a value of " << value << std::endl;
+                std::cout << "removing a node with a value of " << value << std::endl;
                 delete this;
             }
         }
+
+        // 1 child
         else if(numChildren() == 1)
         {
             if (parent != nullptr)
             {
                 if (this == parent->left)
                 {
-                    if (left)
-                    {
-                        parent->left = left;
-                    }
-                    if(right)
-                    {
-                        parent->left = right;
-                    }
+                    parent->left = getOnlyChild();
                 }
-                if (this == parent->right)
+                else
                 {
-                    if (left)
-                    {
-                        parent->right = left;
-                    }
-                    if (right)
-                    {
-                        parent->right = right;
-                    }
+                    parent->right = getOnlyChild();
                 }
-                std::cout << "Deleting a node with a value of " << value << std::endl;
+                std::cout << "removing a node with a value of " << value << std::endl;
                 delete this;
             }
+        }
+
+        // 2 children
+        else if (numChildren() == 2)
+        {
+            std::cout << "removing a node with a value of " << value << std::endl;
+
+            // find the treeNode with the smallest value larger than this treeNodes value
+            treeNode* targetNode = right;
+
+            while (targetNode->left)
+            {
+                targetNode = targetNode->left;
+            }
+
+            // copy that treeNodes value
+            value = targetNode->value;
+
+            // remove the target treeNode
+            targetNode->remove();
         }
     }
 

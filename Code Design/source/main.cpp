@@ -71,15 +71,16 @@ int main()
         // log that the program has started
         aieLOG("Application started");
 
-        treeNode<int> givingTree(50);
-        givingTree.insert(rand() % 100);
-        givingTree.insert(rand() % 100);
-        givingTree.insert(rand() % 100);
-        givingTree.insert(rand() % 100);
-        givingTree.insert(rand() % 100);
-        givingTree.insert(rand() % 100);
+        treeNode<int> givingTree(10);
+        givingTree.insert(5);
+        givingTree.insert(7);
+        givingTree.insert(15);
+        givingTree.insert(12);
+        givingTree.insert(17);
+        givingTree.insert(14);
 
-        givingTree.getLeft()->getLeft()->remove();
+
+        givingTree.getRoot()->remove();
 
         // create List of int
         List<int> myList;
