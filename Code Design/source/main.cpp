@@ -79,7 +79,7 @@ int main()
         givingTree.insert(rand() % 100);
         givingTree.insert(rand() % 100);
 
-        givingTree.getRight()->getRight()->remove();
+        givingTree.getLeft()->getLeft()->remove();
 
         // create List of int
         List<int> myList;

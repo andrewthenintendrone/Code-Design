@@ -111,9 +111,35 @@ public:
                 delete this;
             }
         }
-        else
+        else if(numChildren() == 1)
         {
-
+            if (parent != nullptr)
+            {
+                if (this == parent->left)
+                {
+                    if (left)
+                    {
+                        parent->left = left;
+                    }
+                    if(right)
+                    {
+                        parent->left = right;
+                    }
+                }
+                if (this == parent->right)
+                {
+                    if (left)
+                    {
+                        parent->right = left;
+                    }
+                    if (right)
+                    {
+                        parent->right = right;
+                    }
+                }
+                std::cout << "Deleting a node with a value of " << value << std::endl;
+                delete this;
+            }
         }
     }
 
