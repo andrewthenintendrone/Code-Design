@@ -71,7 +71,13 @@ int main()
         // log that the program has started
         aieLOG("Application started");
 
-        treeNode<int> givingTree(1);
+        treeNode<int> givingTree(50);
+        givingTree.insert(rand() % 100);
+        givingTree.insert(rand() % 100);
+        givingTree.insert(rand() % 100);
+        givingTree.insert(rand() % 100);
+        givingTree.insert(rand() % 100);
+        givingTree.insert(rand() % 100);
 
         // create List of int
         List<int> myList;
