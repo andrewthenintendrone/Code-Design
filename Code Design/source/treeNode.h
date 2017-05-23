@@ -30,6 +30,20 @@ public:
         return right;
     }
 
+    // returns the number of nodes from 0 to 2
+    unsigned int numNodes()
+    {
+        if (left && right )
+        {
+            return 2;
+        }
+        if (left ^^ right)
+        {
+            return 1;
+        }
+        return 0;
+    }
+
     // inserts a new treeNode automatically
     void insert(T newValue)
     {
