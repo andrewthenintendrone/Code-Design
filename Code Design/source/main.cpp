@@ -80,7 +80,7 @@ int main()
         givingTree.insert(14);
 
 
-        givingTree.getRoot()->remove();
+        givingTree.getRoot()->getRight()->remove();
 
         // create List of int
         List<int> myList;

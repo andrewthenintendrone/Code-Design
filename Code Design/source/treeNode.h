@@ -52,6 +52,19 @@ public:
         return (left != nullptr ? left : right);
     }
 
+    // returns the pointer to this treeNode from its parent
+    treeNode* getParentsPointerToMe()
+    {
+        if (this == parent->left)
+        {
+            return parent->left;
+        }
+        else
+        {
+            return parent->right;
+        }
+    }
+
     // maybe change this
     // returns the number of children from 0 to 2
     unsigned int numChildren()
@@ -121,14 +134,8 @@ public:
         {
             if (parent != nullptr)
             {
-                if (this == parent->left)
-                {
-                    parent->left = nullptr;
-                }
-                else if (this == parent->right)
-                {
-                    parent->right = nullptr;
-                }
+                treeNode* parentLink = getParentsPointerToMe();
+                parentLink = nullptr;
                 std::cout << "removing a node with a value of " << value << std::endl;
                 delete this;
             }
@@ -139,14 +146,8 @@ public:
         {
             if (parent != nullptr)
             {
-                if (this == parent->left)
-                {
-                    parent->left = getOnlyChild();
-                }
-                else
-                {
-                    parent->right = getOnlyChild();
-                }
+                treeNode* parentLink = getParentsPointerToMe();
+                parentLink = getOnlyChild();
                 std::cout << "removing a node with a value of " << value << std::endl;
                 delete this;
             }
@@ -155,8 +156,6 @@ public:
         // 2 children
         else if (numChildren() == 2)
         {
-            std::cout << "removing a node with a value of " << value << std::endl;
-
             // find the treeNode with the smallest value larger than this treeNodes value
             treeNode* targetNode = right;
 
