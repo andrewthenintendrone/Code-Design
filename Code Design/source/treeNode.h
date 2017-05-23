@@ -4,7 +4,7 @@ template<typename T>
 class treeNode
 {
 public:
-    treeNode(T newValue) : value(newValue), left(nullptr), right(nullptr) {}
+    treeNode(T newValue) : value(newValue), parent(nullptr), left(nullptr), right(nullptr) {}
 
     // returns the treeNodes value
     T getValue()
@@ -66,6 +66,9 @@ public:
 
 private:
     T value;
+
+    // parent
+    treeNode* parent;
 
     // children
     treeNode* left;
