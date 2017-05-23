@@ -1,12 +1,21 @@
 #pragma once
 #include <aieException.h>
 
+//################################################//
+//  Tree Node Class                               //
+//################################################//
 template<typename T>
 class treeNode
 {
 public:
-    // constructor
+    /**********************************/
+    /*  CONSTRUCTORS AND DESTRUCTORS  */
+    /**********************************/
     treeNode(T newValue) : value(newValue), parent(nullptr), left(nullptr), right(nullptr) {}
+    
+    /*************************/
+    /*  GETTERS AND SETTERS  */
+    /*************************/
 
     // returns the treeNodes value
     T getValue()
@@ -65,7 +74,6 @@ public:
         }
     }
 
-    // maybe change this
     // returns the number of children from 0 to 2
     unsigned int numChildren()
     {
@@ -80,6 +88,9 @@ public:
         return 0;
     }
 
+    /*************************/
+    /*  INSERTION            */
+    /*************************/
 
     // takes a value and finds a place to create a new treeNode for it
     void insert(T newValue)
@@ -94,7 +105,8 @@ public:
             }
             else
             {
-                insertLeft(newValue);
+                left = new treeNode(newValue);
+                left->parent = this;
             }
         }
         // inserted value is equal to or higher than this treeNodes value
@@ -107,29 +119,20 @@ public:
             }
             else
             {
-                insertRight(newValue);
+                right = new treeNode(newValue);
+                right->parent = this;
             }
         }
     }
 
-    // creates a new treeNode and sets it as the left child
-    void insertLeft(T newValue)
-    {
-        left = new treeNode(newValue);
-        left->parent = this;
-    }
-
-    // creates a new treeNode and sets it as the right child
-    void insertRight(T newValue)
-    {
-        right = new treeNode(newValue);
-        right->parent = this;
-    }
+    /*************************/
+    /*  REMOVAL              */
+    /*************************/
 
     // removes this treeNode from the tree
     void remove()
     {
-        // leaf
+        // 0 children
         if (numChildren() == 0)
         {
             if (parent != nullptr)
