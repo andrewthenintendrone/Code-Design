@@ -57,7 +57,7 @@ public:
     // returns a pointer to the only child treeNode
     treeNode* getOnlyChild()
     {
-        aieASSERT(numChildren() == 1);
+        aieASSERT(getNumChildren() == 1);
         return (left != nullptr ? left : right);
     }
 
@@ -75,7 +75,7 @@ public:
     }
 
     // returns the number of children from 0 to 2
-    unsigned int numChildren()
+    unsigned int getNumChildren()
     {
         if (left && right)
         {
@@ -133,7 +133,7 @@ public:
     void remove()
     {
         // 0 children
-        if (numChildren() == 0)
+        if (getNumChildren() == 0)
         {
             if (parent != nullptr)
             {
@@ -145,7 +145,7 @@ public:
         }
 
         // 1 child
-        else if(numChildren() == 1)
+        else if(getNumChildren() == 1)
         {
             if (parent != nullptr)
             {
@@ -157,7 +157,7 @@ public:
         }
 
         // 2 children
-        else if (numChildren() == 2)
+        else if (getNumChildren() == 2)
         {
             // find the treeNode with the smallest value larger than this treeNodes value
             treeNode* targetNode = right;
