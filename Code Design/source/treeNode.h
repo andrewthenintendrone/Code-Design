@@ -12,6 +12,12 @@ public:
         return value;
     }
 
+    // returns the parent
+    treeNode& getParent()
+    {
+        return parent;
+    }
+
     // returns the left treeNode
     treeNode& getLeft()
     {
@@ -56,15 +62,18 @@ public:
     void insertLeft(T newValue)
     {
         left = new treeNode(newValue);
+        left->parent = this;
     }
 
     // adds a new treeNode as the right child
     void insertRight(T newValue)
     {
         right = new treeNode(newValue);
+        right->parent = this;
     }
 
 private:
+    // value
     T value;
 
     // parent
