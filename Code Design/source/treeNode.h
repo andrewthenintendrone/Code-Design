@@ -13,35 +13,41 @@ public:
     }
 
     // returns the parent
-    treeNode& getParent()
+    treeNode* getParent()
     {
         return parent;
     }
 
     // returns the left treeNode
-    treeNode& getLeft()
+    treeNode* getLeft()
     {
         return left;
     }
 
     // returns the right treeNode
-    treeNode& getRight()
+    treeNode* getRight()
     {
         return right;
     }
 
-    // returns the number of nodes from 0 to 2
-    unsigned int numNodes()
+    // returns the number of children from 0 to 2
+    unsigned int numChildren()
     {
-        if (left && right )
+        if (left && right)
         {
             return 2;
         }
-        if (left ^^ right)
+        if ((left != nullptr) ^ (right != nullptr))
         {
             return 1;
         }
         return 0;
+    }
+
+    // returns true if the treeNode is a leaf
+    bool isLeaf()
+    {
+        return(numChildren() == 0);
     }
 
     // inserts a new treeNode automatically
@@ -84,6 +90,31 @@ public:
     {
         right = new treeNode(newValue);
         right->parent = this;
+    }
+
+    // removes the treeNode from the tree
+    void remove()
+    {
+        if (isLeaf())
+        {
+            if (parent != nullptr)
+            {
+                if (this == parent->left)
+                {
+                    parent->left = nullptr;
+                }
+                else if (this == parent->right)
+                {
+                    parent->right = nullptr;
+                }
+                std::cout << "Deleting a node with a value of " << value << std::endl;
+                delete this;
+            }
+        }
+        else
+        {
+
+        }
     }
 
 private:
