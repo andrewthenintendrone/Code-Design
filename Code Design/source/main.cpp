@@ -1,6 +1,7 @@
 #include <iostream>
 #include "linkedList.h"
 #include "treeNode.h"
+#include "hash.h"
 #include "sumTo.h"
 #include "digitalRoot.h"
 #include "aieLog.h"
@@ -81,6 +82,9 @@ int main()
 
 
         givingTree.getRoot()->getRight()->remove();
+
+        unsigned char* data = (unsigned char*)"andrew";
+        std::cout << ELFHash(data, sizeof(data)) << std::endl;
 
         // create List of int
         List<int> myList;

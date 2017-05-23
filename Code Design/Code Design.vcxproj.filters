@@ -68,5 +68,8 @@
     <ClInclude Include="source\treeNode.h">
       <Filter>Source Files</Filter>
     </ClInclude>
+    <ClInclude Include="source\hash.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
