@@ -83,7 +83,7 @@ int main()
 
         givingTree.getRoot()->getRight()->remove();
 
-        std::cout << std::hex << basicHash((unsigned char*)"hashme") << std::endl << std::dec;
+        std::cout << std::hex << BKDRHash((unsigned char*)"Andrew") << std::endl << std::dec;
 
         // create List of int
         List<int> myList;

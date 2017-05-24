@@ -16,6 +16,21 @@ unsigned int basicHash(unsigned char* data)
 }
 
 //################################################//
+//  BKDR Hash                                     //
+//################################################//
+unsigned int BKDRHash(unsigned char* data)
+{
+    unsigned int hash = 0;
+
+    while (*data)
+    {
+        hash = (hash * 1313) + *data++;
+    }
+
+    return (hash & 0x7FFFFFFF);
+}
+
+//################################################//
 //  ELF Hash                                      //
 //################################################//
 unsigned int ELFHash(unsigned char* data)
