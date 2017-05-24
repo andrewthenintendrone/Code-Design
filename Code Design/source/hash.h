@@ -48,3 +48,18 @@ unsigned int ELFHash(unsigned char* data)
     }
     return (hash & 0x7FFFFFFF);
 }
+
+//################################################//
+//  djb2 Hash                                     //
+//################################################//
+unsigned long djb2Hash(unsigned char* data)
+{
+    unsigned long hash = 5381;
+
+    while (*data)
+    {
+        hash = ((hash << 5) + hash) + *data++;
+    }
+
+    return hash;
+}
