@@ -1,82 +1,97 @@
 #pragma once
 
-//################################################//
-//  basic Hash (don't ever use this)              //
-//################################################//
-unsigned long loseloseHash(unsigned char* data)
+#include <functional>
+
+namespace HashFunction
 {
-    unsigned long hash = 0;
 
-    while (*data)
+    typedef std::function<unsigned long(const unsigned char*)> HashFunc;
+
+    //################################################//
+    //  basic Hash (don't ever use this)              //
+    //################################################//
+    unsigned long loseloseHash(const unsigned char* data)
     {
-        hash += *data++;
-    }
+        unsigned long hash = 0;
+        int c = 0;
 
-    return hash;
-}
-
-//################################################//
-//  BKDR Hash                                     //
-//################################################//
-unsigned long BKDRHash(unsigned char* data)
-{
-    unsigned long hash = 0;
-
-    while (*data)
-    {
-        hash = (hash * 1313) + *data++;
-    }
-
-    return (hash & 0x7FFFFFFFL);
-}
-
-//################################################//
-//  ELF Hash                                      //
-//################################################//
-unsigned long ELFHash(unsigned char* data)
-{
-    unsigned long hash = 0, x = 0;
-
-    while(*data)
-    {
-        hash = (hash << 4) + *data++;
-        if ((x = hash & 0xF0000000L))
+        while (c = *data++)
         {
-            hash ^= (x >> 24);
-            hash &= ~x;
+            hash += c;
         }
+
+        return hash;
     }
-    return (hash & 0x7FFFFFFFL);
-}
 
-//################################################//
-//  djb2 Hash                                     //
-//################################################//
-unsigned long djb2Hash(unsigned char* data)
-{
-    unsigned long hash = 5381;
-
-    while (*data)
+    //################################################//
+    //  BKDR Hash                                     //
+    //################################################//
+    unsigned long BKDRHash(const unsigned char* data)
     {
-        //  (x << 5) + x is the same as (x * 33)
-        hash = ((hash << 5) + hash) + (*data++);
+        unsigned long hash = 0;
+        int c = 0;
+
+        while (c = *data++)
+        {
+            hash = (hash * 1313) + c;
+        }
+
+        return (hash & 0x7FFFFFFFL);
     }
 
-    return hash;
-}
-
-//################################################//
-//  SDBM Hash                                     //
-//################################################//
-unsigned long SDBMHash(unsigned char* data)
-{
-    unsigned long hash = 0;
-
-    while (data)
+    //################################################//
+    //  ELF Hash                                      //
+    //################################################//
+    unsigned long ELFHash(const unsigned char* data)
     {
-        //  ((x << 6) + (x << 16) - x) is the same as (x * 65599)
-        hash = (*data++) + (hash << 6) + (hash << 16) - hash;
+        unsigned long hash = 0, x = 0;
+        int c = 0;
+
+        while (c = *data++)
+        {
+            hash = (hash << 4) + c;
+            if ((x = hash & 0xF0000000L))
+            {
+                hash ^= (x >> 24);
+                hash &= ~x;
+            }
+        }
+        return (hash & 0x7FFFFFFFL);
     }
 
-    return hash;
+    //################################################//
+    //  djb2 Hash                                     //
+    //################################################//
+    unsigned long djb2Hash(const unsigned char* data)
+    {
+        unsigned long hash = 5381;
+        int c = 0;
+
+        while (c = *data++)
+        {
+            //  (x << 5) + x is the same as (x * 33)
+            hash = ((hash << 5) + hash) + c;
+        }
+
+        return hash;
+    }
+
+    //################################################//
+    //  SDBM Hash                                     //
+    //################################################//
+    unsigned long SDBMHash(const unsigned char* data)
+    {
+        unsigned long hash = 0;
+        int c = 0;
+
+        while (c = *data++)
+        {
+            //  ((x << 6) + (x << 16) - x) is the same as (x * 65599)
+            hash = c + (hash << 6) + (hash << 16) - hash;
+        }
+
+        return hash;
+    }
+
+    static HashFunc default = ELFHash;
 }
