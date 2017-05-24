@@ -91,6 +91,7 @@
     <ClCompile Include="source\aie\aieLog.cpp" />
     <ClCompile Include="source\aie\aieMutex.cpp" />
     <ClCompile Include="source\aie\aieTimer.cpp" />
+    <ClCompile Include="source\HashFunction.cpp" />
     <ClCompile Include="source\main.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -101,7 +102,7 @@
     <ClInclude Include="source\aie\aieNonCopyable.h" />
     <ClInclude Include="source\aie\aieTimer.h" />
     <ClInclude Include="source\digitalRoot.h" />
-    <ClInclude Include="source\hashes.h" />
+    <ClInclude Include="source\HashFunction.h" />
     <ClInclude Include="source\hashTable.h" />
     <ClInclude Include="source\linkedList.h" />
     <ClInclude Include="source\sumTo.h" />

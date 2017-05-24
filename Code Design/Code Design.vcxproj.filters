@@ -36,6 +36,9 @@
     <ClCompile Include="source\aie\aieTimer.cpp">
       <Filter>Source Files\aie</Filter>
     </ClCompile>
+    <ClCompile Include="source\HashFunction.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\linkedList.h">
@@ -68,10 +71,10 @@
     <ClInclude Include="source\treeNode.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="source\hashes.h">
+    <ClInclude Include="source\hashTable.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="source\hashTable.h">
+    <ClInclude Include="source\HashFunction.h">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>

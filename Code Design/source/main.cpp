@@ -1,7 +1,7 @@
 #include <iostream>
 #include "linkedList.h"
 #include "treeNode.h"
-#include "hashes.h"
+#include "HashFunction.h"
 #include "sumTo.h"
 #include "digitalRoot.h"
 #include "aieLog.h"
@@ -83,7 +83,7 @@ int main()
 
         givingTree.getRoot()->getRight()->remove();
 
-        std::cout << std::hex << HashFunction::SDBMHash((unsigned char*)"Andrew") << std::endl << std::dec;
+        std::cout << std::hex << HashFunction::default((unsigned char*)"Andrew") << std::endl << std::dec;
 
         // create List of int
         List<int> myList;

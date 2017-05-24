@@ -1,16 +1,11 @@
-#pragma once
-
-#include <functional>
+#include "HashFunction.h"
 
 namespace HashFunction
 {
-
-    typedef std::function<unsigned long(const unsigned char*)> HashFunc;
-
     //################################################//
-    //  basic Hash (don't ever use this)              //
+    //  basic Hash                                    //
     //################################################//
-    unsigned long loseloseHash(const unsigned char* data)
+    unsigned long basicHash(const unsigned char* data)
     {
         unsigned long hash = 0;
         int c = 0;
@@ -92,6 +87,4 @@ namespace HashFunction
 
         return hash;
     }
-
-    static HashFunc default = ELFHash;
 }
