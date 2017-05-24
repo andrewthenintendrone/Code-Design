@@ -83,8 +83,7 @@ int main()
 
         givingTree.getRoot()->getRight()->remove();
 
-        unsigned char* data = (unsigned char*)"andrew";
-        std::cout << ELFHash(data, sizeof(data)) << std::endl;
+        std::cout << std::hex << ELFHash((unsigned char*)"andrew") << std::endl << std::dec;
 
         // create List of int
         List<int> myList;
