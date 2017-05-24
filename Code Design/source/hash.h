@@ -1,6 +1,21 @@
 #pragma once
 
 //################################################//
+//  Basic Hash                                    //
+//################################################//
+unsigned int basicHash(unsigned char* data)
+{
+    unsigned int hash = 0;
+
+    while (*data)
+    {
+        hash += *data++;
+    }
+
+    return hash;
+}
+
+//################################################//
 //  ELF Hash                                      //
 //################################################//
 unsigned int ELFHash(unsigned char* data)
