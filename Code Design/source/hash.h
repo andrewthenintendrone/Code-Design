@@ -3,9 +3,9 @@
 //################################################//
 //  Basic Hash                                    //
 //################################################//
-unsigned int basicHash(unsigned char* data)
+unsigned long basicHash(unsigned char* data)
 {
-    unsigned int hash = 0;
+    unsigned long hash = 0;
 
     while (*data)
     {
@@ -18,35 +18,35 @@ unsigned int basicHash(unsigned char* data)
 //################################################//
 //  BKDR Hash                                     //
 //################################################//
-unsigned int BKDRHash(unsigned char* data)
+unsigned long BKDRHash(unsigned char* data)
 {
-    unsigned int hash = 0;
+    unsigned long hash = 0;
 
     while (*data)
     {
         hash = (hash * 1313) + *data++;
     }
 
-    return (hash & 0x7FFFFFFF);
+    return (hash & 0x7FFFFFFFL);
 }
 
 //################################################//
 //  ELF Hash                                      //
 //################################################//
-unsigned int ELFHash(unsigned char* data)
+unsigned long ELFHash(unsigned char* data)
 {
-    unsigned int hash = 0, x = 0;
+    unsigned long hash = 0, x = 0;
 
     while(*data)
     {
         hash = (hash << 4) + *data++;
-        if ((x = hash & 0xF0000000))
+        if ((x = hash & 0xF0000000L))
         {
             hash ^= (x >> 24);
             hash &= ~x;
         }
     }
-    return (hash & 0x7FFFFFFF);
+    return (hash & 0x7FFFFFFFL);
 }
 
 //################################################//
