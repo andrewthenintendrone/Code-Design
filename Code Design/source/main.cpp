@@ -1,7 +1,7 @@
 #include <iostream>
 #include "linkedList.h"
 #include "treeNode.h"
-#include "hash.h"
+#include "hashes.h"
 #include "sumTo.h"
 #include "digitalRoot.h"
 #include "aieLog.h"
