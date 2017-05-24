@@ -1,9 +1,9 @@
 #pragma once
 
 //################################################//
-//  Basic Hash                                    //
+//  basic Hash (don't ever use this)              //
 //################################################//
-unsigned long basicHash(unsigned char* data)
+unsigned long loseloseHash(unsigned char* data)
 {
     unsigned long hash = 0;
 
@@ -55,14 +55,11 @@ unsigned long ELFHash(unsigned char* data)
 unsigned long djb2Hash(unsigned char* data)
 {
     unsigned long hash = 5381;
-    int c;
 
-    while (c = *data++)
+    while (*data)
     {
-        //  (x << 5) + x =
-        //  (x *  32) + x =
-        //  (x * 33)
-        hash = ((hash << 5) + hash) + c;
+        //  (x << 5) + x is the same as (x * 33)
+        hash = ((hash << 5) + hash) + (*data++);
     }
 
     return hash;
@@ -74,14 +71,11 @@ unsigned long djb2Hash(unsigned char* data)
 unsigned long SDBMHash(unsigned char* data)
 {
     unsigned long hash = 0;
-    int c;
 
-    while (c = *data++)
+    while (data)
     {
-        //  ((x << 6) + (x << 16) - x) =
-        //  ((x * 64) + (x * 65536) - x) =
-        //  (x * 65599) =
-        hash = c + (hash << 6) + (hash << 16) - hash;
+        //  ((x << 6) + (x << 16) - x) is the same as (x * 65599)
+        hash = (*data++) + (hash << 6) + (hash << 16) - hash;
     }
 
     return hash;
