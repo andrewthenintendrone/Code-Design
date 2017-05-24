@@ -1,12 +1,13 @@
 #include <iostream>
 #include "linkedList.h"
 #include "treeNode.h"
-#include "HashFunction.h"
+#include "HashTable.h"
 #include "sumTo.h"
 #include "digitalRoot.h"
 #include "aieLog.h"
 #include "aieException.h"
 #include <Windows.h>
+#include <string>
 
 #ifndef _DEBUG
 #undef aieASSERT
@@ -71,6 +72,9 @@ int main()
 
         // log that the program has started
         aieLOG("Application started");
+
+        // Hash Table
+        HashTable<std::string, int>table(10);
 
         treeNode<int> givingTree(10);
         givingTree.insert(5);

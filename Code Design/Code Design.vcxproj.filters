@@ -71,10 +71,10 @@
     <ClInclude Include="source\treeNode.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="source\hashTable.h">
+    <ClInclude Include="source\HashFunction.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="source\HashFunction.h">
+    <ClInclude Include="source\HashTable.h">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>
