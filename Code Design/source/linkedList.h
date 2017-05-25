@@ -4,23 +4,23 @@
 //################################################//
 //  List Node Class                               //
 //################################################//
-template<typename T>
+template<typename dataType>
 class ListNode
 {
 public:
     // constructor
     ListNode() : next(nullptr), prev(nullptr) {};
-    ListNode(T newValue) : value(newValue), next(nullptr), prev(nullptr) {};
+    ListNode(dataType newValue) : value(newValue), next(nullptr), prev(nullptr) {};
 
     ListNode* next;
     ListNode* prev;
-    T value;
+    dataType value;
 };
 
 //################################################//
 //  Linked List Class                             //
 //################################################//
-template<typename T>
+template<typename dataType>
 class List
 {
 public:
@@ -32,7 +32,7 @@ public:
     public:
         // constructors
         Iterator() : m_node(nullptr) {};
-        Iterator(ListNode<T>* node) : m_node(node) { }
+        Iterator(ListNode<dataType>* node) : m_node(node) { }
 
         // Iterator methods
         void operator ++ () { m_node = m_node->next; }
@@ -41,39 +41,39 @@ public:
         void operator -- () { m_node = m_node->prev; }
         void operator -- (int) { m_node = m_node->prev; }
 
-        T& operator * () { return m_node->value; }
-        T* operator -> () { return &m_node->value; }
+        dataType& operator * () { return m_node->value; }
+        dataType* operator -> () { return &m_node->value; }
 
         bool operator == (const Iterator& rhs) { return (m_node == rhs.m_node); }
         bool operator != (const Iterator& rhs) { return (m_node != rhs.m_node); }
 
         // public access to ListNode
-        ListNode<T>* getNode() { return m_node; }
+        ListNode<dataType>* getNode() { return m_node; }
 
     private:
-        ListNode<T>* m_node;
+        ListNode<dataType>* m_node;
     };
 
     // constructor
     List() : m_front(nullptr), m_back(nullptr), size(0) { }
 
     // adds a ListNode to the front of the List
-    void pushFront(T value)
+    void pushFront(dataType value)
     {
         insertBefore(Iterator(m_front), value);
     }
 
     // adds a ListNode to the back of the List
-    void pushBack(T value)
+    void pushBack(dataType value)
     {
         insertAfter(Iterator(m_back), value);
     }
 
     // inserts a ListNode before the specified Iterators ListNode
-    void insertBefore(Iterator iter, T value)
+    void insertBefore(Iterator iter, dataType value)
     {
-        ListNode<T> *n = new ListNode<T>(value);
-        ListNode<T> *currentNode = iter.getNode();
+        ListNode<dataType> *n = new ListNode<dataType>(value);
+        ListNode<dataType> *currentNode = iter.getNode();
         size++;
 
         if (currentNode == nullptr)
@@ -99,10 +99,10 @@ public:
     };
 
     // inserts a ListNode after the specified Iterators ListNode
-    void insertAfter(Iterator iter, T value)
+    void insertAfter(Iterator iter, dataType value)
     {
-        ListNode<T> *n = new ListNode<T>(value);
-        ListNode<T> *currentNode = iter.getNode();
+        ListNode<dataType> *n = new ListNode<dataType>(value);
+        ListNode<dataType> *currentNode = iter.getNode();
         size++;
 
         if (currentNode == nullptr)
@@ -142,7 +142,7 @@ public:
     // removes the specified Iterators ListNode 
     void erase(Iterator iter)
     {
-        ListNode<T>* node = iter.getNode();
+        ListNode<dataType>* node = iter.getNode();
 
         // if there is a next node
         if (node->next)
@@ -178,9 +178,9 @@ public:
     };
 
     // removes ListNodes containing values matching the input
-    void remove(T input)
+    void remove(dataType input)
     {
-        List<T> temp;
+        List<dataType> temp;
 
         for (auto iter = begin(); iter != end(); iter++)
         {
@@ -194,9 +194,9 @@ public:
     };
 
     // removes ListNodes that satisfy a predicate
-    void remove(bool(*predicate)(T input))
+    void remove(bool(*predicate)(dataType input))
     {
-        List<T> temp;
+        List<dataType> temp;
 
         for (auto iter = begin(); iter != end(); iter++)
         {
@@ -241,15 +241,15 @@ public:
     }
 
     // public access to private ListNodes
-    ListNode<T>* first() { return m_front; }
-    ListNode<T>* last() { return m_back; }
+    ListNode<dataType>* first() { return m_front; }
+    ListNode<dataType>* last() { return m_back; }
 
     // Iterators
     Iterator begin() { return Iterator(m_front); }
     Iterator end() { return Iterator(nullptr); }
 
 private:
-    ListNode<T>* m_front;
-    ListNode<T>* m_back;
+    ListNode<dataType>* m_front;
+    ListNode<dataType>* m_back;
     unsigned int size;
 };

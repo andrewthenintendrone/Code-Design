@@ -10,28 +10,29 @@ struct Pair
     B second;
 };
 
-template<typename KeyType, typename T>
+template<typename dataType>
 class HashTable
 {
 public:
-    HashTable(unsigned int size) : m_size(size), m_data(new T[size]), hashFunction(HashFunction::default) {}
+    HashTable(unsigned int size) : m_size(size), m_data(new dataType[size]) {}
     ~HashTable() { delete[] m_data; }
 
-    T& operator [] (const KeyType& key)
+    dataType& operator [] (const std::string& key)
     {
-        auto hashedKey = HashMode::hash(key) % m_size;
+        std::cout << "normal" << std::endl;
+        unsigned long hashedKey = HashFunction::default((key.c_str())) % m_size;
         return m_data[hashedKey];
     }
 
-    const T& operator [] (const KeyType& key) const
+    const dataType& operator [] (const std::string& key) const
     {
-        auto hashedKey = hash(key) % m_size;
+        std::cout << "const" << std::endl;
+        unsigned long hashedKey = HashFunction(key.c_str()) % m_size;
         return m_data[hashedKey];
     }
 
 private:
     HashFunction::HashFunc hashFunction;
-
-    T* m_data;
-    unsigned int m_size;
+    dataType* m_data;
+    unsigned long m_size;
 };

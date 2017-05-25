@@ -1,24 +1,24 @@
 #pragma once
-#include <aieException.h>
+#include "aieException.h"
 
 //################################################//
 //  Tree Node Class                               //
 //################################################//
-template<typename T>
+template<typename dataType>
 class treeNode
 {
 public:
     /**********************************/
     /*  CONSTRUCTORS AND DESTRUCTORS  */
     /**********************************/
-    treeNode(T newValue) : value(newValue), parent(nullptr), left(nullptr), right(nullptr) {}
+    treeNode(dataType newValue) : value(newValue), parent(nullptr), left(nullptr), right(nullptr) {}
     
     /*************************/
     /*  GETTERS AND SETTERS  */
     /*************************/
 
     // returns the treeNodes value
-    T getValue()
+    dataType getValue()
     {
         return value;
     }
@@ -93,7 +93,7 @@ public:
     /*************************/
 
     // takes a value and finds a place to create a new treeNode for it
-    void insert(T newValue)
+    void insert(dataType newValue)
     {
         // inserted value is lower than this treeNodes value
         if (newValue < value)
@@ -177,7 +177,7 @@ public:
 
 private:
     // value
-    T value;
+    dataType value;
 
     // parent
     treeNode* parent;

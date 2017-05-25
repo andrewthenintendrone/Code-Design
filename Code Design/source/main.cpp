@@ -4,14 +4,10 @@
 #include "HashTable.h"
 #include "sumTo.h"
 #include "digitalRoot.h"
-#include "aieLog.h"
-#include "aieException.h"
+#include <aieLog.h>
+#include <aieException.h>
 #include <Windows.h>
 #include <string>
-
-#ifndef _DEBUG
-#undef aieASSERT
-#endif
 
 std::string g_exeFolder;
 
@@ -48,9 +44,9 @@ int letterToNumber(char letter)
     }
 }
 
-template<typename T>
+template<typename dataType>
 // returns true if input is even
-bool isEven(T input)
+bool isEven(dataType input)
 {
     return (input % 2 == 0);
 }
@@ -73,8 +69,15 @@ int main()
         // log that the program has started
         aieLOG("Application started");
 
-        // Hash Table
-        HashTable<std::string, int>table(10);
+        // create a Hash Table
+        HashTable<unsigned int>table(10);
+        table["one"] = 1;
+        table["two"] = 2;
+        table["three"] = 3;
+        table["four"] = 4;
+        table["five"] = 5;
+
+        std::cout << table["five"];
 
         treeNode<int> givingTree(10);
         givingTree.insert(5);
@@ -87,7 +90,7 @@ int main()
 
         givingTree.getRoot()->getRight()->remove();
 
-        std::cout << std::hex << HashFunction::default((unsigned char*)"Andrew") << std::endl << std::dec;
+        //std::cout << std::hex << HashFunction::default<char*>((char*)"Andrew") << std::endl << std::dec;
 
         // create List of int
         List<int> myList;

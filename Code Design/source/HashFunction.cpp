@@ -5,7 +5,7 @@ namespace HashFunction
     //################################################//
     //  basic Hash                                    //
     //################################################//
-    unsigned long basicHash(const unsigned char* data)
+    unsigned long basicHash(const char* data)
     {
         unsigned long hash = 0;
         int c = 0;
@@ -21,7 +21,7 @@ namespace HashFunction
     //################################################//
     //  BKDR Hash                                     //
     //################################################//
-    unsigned long BKDRHash(const unsigned char* data)
+    unsigned long BKDRHash(const char* data)
     {
         unsigned long hash = 0;
         int c = 0;
@@ -37,7 +37,7 @@ namespace HashFunction
     //################################################//
     //  ELF Hash                                      //
     //################################################//
-    unsigned long ELFHash(const unsigned char* data)
+    unsigned long ELFHash(const char* data)
     {
         unsigned long hash = 0, x = 0;
         int c = 0;
@@ -57,7 +57,7 @@ namespace HashFunction
     //################################################//
     //  djb2 Hash                                     //
     //################################################//
-    unsigned long djb2Hash(const unsigned char* data)
+    unsigned long djb2Hash(const char* data)
     {
         unsigned long hash = 5381;
         int c = 0;
@@ -74,7 +74,7 @@ namespace HashFunction
     //################################################//
     //  SDBM Hash                                     //
     //################################################//
-    unsigned long SDBMHash(const unsigned char* data)
+    unsigned long SDBMHash(const char* data)
     {
         unsigned long hash = 0;
         int c = 0;
