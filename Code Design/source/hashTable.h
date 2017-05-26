@@ -3,36 +3,58 @@
 #include <string>
 #include "HashFunction.h"
 
-template<typename A, typename B>
-struct Pair
+template<typename dataType>
+struct Bucket
 {
-    A first;
-    B second;
+    std::string name;
+    dataType data;
 };
 
 template<typename dataType>
 class HashTable
 {
 public:
-    HashTable(unsigned int size) : m_size(size), m_data(new dataType[size]) {}
-    ~HashTable() { delete[] m_data; }
+    HashTable(unsigned int size) : m_size(size), m_buckets(new Bucket<dataType>[size]) {}
+    ~HashTable() { delete[] m_buckets; }
 
     dataType& operator [] (const std::string& key)
     {
-        std::cout << "normal" << std::endl;
         unsigned long hashedKey = HashFunction::default((key.c_str())) % m_size;
-        return m_data[hashedKey];
+        while (true)
+        {
+            if (m_buckets[hashedKey].name == key || m_buckets[hashedKey].name.empty())
+            {
+                m_buckets[hashedKey].name = key;
+                return m_buckets[hashedKey].data;
+            }
+            else
+            {
+                hashedKey++;
+            }
+        }
     }
 
-    const dataType& operator [] (const std::string& key) const
+    float loadFactor()
     {
-        std::cout << "const" << std::endl;
-        unsigned long hashedKey = HashFunction(key.c_str()) % m_size;
-        return m_data[hashedKey];
+        unsigned long usedBuckets = 0;
+        for (unsigned long i = 0; i < m_size; i++)
+        {
+            if (!m_buckets[i])
+            {
+                std::cout << "empty bucket" << std::endl;
+            }
+        }
+        return 0.5f;
+    }
+
+    // removes a bucket by erasing its name
+    void remove(const std::string& key)
+    {
+        m_buckets[key].name.clear();
     }
 
 private:
     HashFunction::HashFunc hashFunction;
-    dataType* m_data;
+    Bucket<dataType>* m_buckets;
     unsigned long m_size;
 };

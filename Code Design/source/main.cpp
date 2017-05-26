@@ -76,8 +76,17 @@ int main()
         table["three"] = 3;
         table["four"] = 4;
         table["five"] = 5;
+        table["five"] = 5;
+        table["five"] = 5;
+        table["five"] = 5;
+        table["five"] = 5;
 
-        std::cout << table["five"];
+        std::cout << table.loadFactor() << std::endl;
+        std::cout << table["five"] << std::endl;
+        std::cout << table["four"] << std::endl;
+        std::cout << table["three"] << std::endl;
+        std::cout << table["two"] << std::endl;
+        std::cout << table["one"] << std::endl;
 
         treeNode<int> givingTree(10);
         givingTree.insert(5);
