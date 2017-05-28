@@ -39,7 +39,7 @@ public:
         unsigned long usedBuckets = 0;
         for (unsigned long i = 0; i < m_size; i++)
         {
-            if (!m_buckets[i])
+            if (m_buckets[i].name.empty())
             {
                 std::cout << "empty bucket" << std::endl;
             }

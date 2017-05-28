@@ -76,10 +76,6 @@ int main()
         table["three"] = 3;
         table["four"] = 4;
         table["five"] = 5;
-        table["five"] = 5;
-        table["five"] = 5;
-        table["five"] = 5;
-        table["five"] = 5;
 
         std::cout << table.loadFactor() << std::endl;
         std::cout << table["five"] << std::endl;
@@ -88,16 +84,17 @@ int main()
         std::cout << table["two"] << std::endl;
         std::cout << table["one"] << std::endl;
 
-        treeNode<int> givingTree(10);
-        givingTree.insert(5);
-        givingTree.insert(7);
-        givingTree.insert(15);
-        givingTree.insert(12);
-        givingTree.insert(17);
-        givingTree.insert(14);
+        treeNode<int> myTree(10);
+        myTree.insert(5);
+        myTree.insert(7);
+        myTree.insert(15);
+        myTree.insert(12);
+        myTree.insert(17);
+        myTree.insert(14);
 
+        std::cout << "found " << myTree.findNode(15)->getValue() << std::endl;
 
-        givingTree.getRoot()->getRight()->remove();
+        myTree.getRoot()->getRight()->remove();
 
         //std::cout << std::hex << HashFunction::default<char*>((char*)"Andrew") << std::endl << std::dec;
 

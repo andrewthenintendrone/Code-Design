@@ -54,6 +54,36 @@ public:
         return root;
     }
 
+    // returns a pointer to the treeNode with the specified value
+    treeNode* findNode(dataType valueToFind)
+    {
+        treeNode* currentNode = getRoot();
+
+        while (true)
+        {
+            if (currentNode->value == valueToFind)
+            {
+                return currentNode;
+            }
+            if(currentNode->value > valueToFind)
+            {
+                if (currentNode->left == nullptr)
+                {
+                    return nullptr;
+                }
+                currentNode = currentNode->left;
+            }
+            if (currentNode->value < valueToFind)
+            {
+                if (currentNode->right == nullptr)
+                {
+                    return nullptr;
+                }
+                currentNode = currentNode->right;
+            }
+        }
+    }
+
     // returns a pointer to the only child treeNode
     treeNode* getOnlyChild()
     {
