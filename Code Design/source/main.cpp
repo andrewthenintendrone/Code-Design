@@ -76,67 +76,70 @@ int main()
         table["three"] = 3;
         table["four"] = 4;
         table["five"] = 5;
+        table["six"] = 6;
 
-        std::cout << table.loadFactor() << std::endl;
-        std::cout << table["five"] << std::endl;
-        std::cout << table["four"] << std::endl;
-        std::cout << table["three"] << std::endl;
-        std::cout << table["two"] << std::endl;
-        std::cout << table["one"] << std::endl;
+        HashTable<unsigned int>table2(100);
+        table2 = table;
 
-        treeNode<int> myTree(10);
-        myTree.insert(5);
-        myTree.insert(7);
-        myTree.insert(15);
-        myTree.insert(12);
-        myTree.insert(17);
-        myTree.insert(14);
+        std::cout << table2["five"] << std::endl;
+        std::cout << table2["four"] << std::endl;
+        std::cout << table2["three"] << std::endl;
+        std::cout << table2["two"] << std::endl;
+        std::cout << table2["one"] << std::endl;
+        std::cout << table2["six"] << std::endl;
+        //treeNode<int> myTree(10);
+        //myTree.insert(5);
+        //myTree.insert(7);
+        //myTree.insert(15);
+        //myTree.insert(12);
+        //myTree.insert(17);
+        //myTree.insert(14);
 
-        std::cout << "found " << myTree.findNode(15)->getValue() << std::endl;
+        //std::cout << "found " << myTree.findNode(15)->getValue() << std::endl;
 
-        myTree.getRoot()->getRight()->remove();
+        //myTree.getRoot()->getRight()->remove();
 
-        //std::cout << std::hex << HashFunction::default<char*>((char*)"Andrew") << std::endl << std::dec;
+        ////std::cout << std::hex << HashFunction::default<char*>((char*)"Andrew") << std::endl << std::dec;
 
-        // create List of int
-        List<int> myList;
+        //// create List of int
+        //List<int> myList;
 
-        // push some numbers onto the back
-        myList.pushBack(5);
-        myList.pushBack(6);
-        myList.pushBack(7);
-        myList.pushBack(8);
+        //// push some numbers onto the back
+        //myList.pushBack(5);
+        //myList.pushBack(6);
+        //myList.pushBack(7);
+        //myList.pushBack(8);
 
-        // push some more numbers onto the front
-        myList.pushFront(4);
-        myList.pushFront(3);
-        myList.pushFront(2);
-        myList.pushFront(1);
+        //// push some more numbers onto the front
+        //myList.pushFront(4);
+        //myList.pushFront(3);
+        //myList.pushFront(2);
+        //myList.pushFront(1);
 
-        // create function pointer
-        bool(*predicate)(int);
-        predicate = isEven;
+        //// create function pointer
+        //bool(*predicate)(int);
+        //predicate = isEven;
 
-        // remove values from list that meet the predicate
-        myList.remove(predicate);
+        //// remove values from list that meet the predicate
+        //myList.remove(predicate);
 
-        // remove any 7s
-        myList.remove(7);
+        //// remove any 7s
+        //myList.remove(7);
 
-        // print out each value using an iterator
-        for (auto iter = myList.begin(); iter != myList.end(); iter++)
-        {
-            std::cout << iter.getNode()->value << " ";
-        }
-        std::cout << std::endl;
+        //// print out each value using an iterator
+        //for (auto iter = myList.begin(); iter != myList.end(); iter++)
+        //{
+        //    std::cout << iter.getNode()->value << " ";
+        //}
+        //std::cout << std::endl;
 
-        // print out the number of elements
-        std::cout << "There are " << myList.count() << " elements." << std::endl;
+        //// print out the number of elements
+        //std::cout << "There are " << myList.count() << " elements." << std::endl;
 
-        // clear the list
-        myList.clear();
+        //// clear the list
+        //myList.clear();
 
-        aieASSERT(myList.empty());
+        //aieASSERT(myList.empty());
     }
     catch (const std::exception& e)
     {
