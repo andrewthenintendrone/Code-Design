@@ -71,22 +71,34 @@ int main()
 
         // create a Hash Table
         HashTable<unsigned int>table(10);
-        table["one"] = 1;
-        table["two"] = 2;
-        table["three"] = 3;
-        table["four"] = 4;
-        table["five"] = 5;
-        table["six"] = 6;
+        table["bulbasaur"] = 1;
+        table["ivysaur"] = 2;
+        table["venusaur"] = 3;
+        table["charmander"] = 4;
+        table["charmeleon"] = 5;
+        table["charizard"] = 6;
+        table["squirtle"] = 7;
+        table["wartortle"] = 8;
+        table["blastoise"] = 9;
+        table["caterpie"] = 10;
+        table["metapod"] = 11;
 
-        HashTable<unsigned int>table2(100);
-        table2 = table;
+        HashTable<unsigned int>table2(table);
 
-        std::cout << table2["five"] << std::endl;
-        std::cout << table2["four"] << std::endl;
-        std::cout << table2["three"] << std::endl;
-        std::cout << table2["two"] << std::endl;
-        std::cout << table2["one"] << std::endl;
-        std::cout << table2["six"] << std::endl;
+        std::cout << table2["bulbasaur"] << std::endl;
+        std::cout << table2["ivysaur"] << std::endl;
+        std::cout << table2["venusaur"] << std::endl;
+        std::cout << table2["charmander"] << std::endl;
+        std::cout << table2["charmeleon"] << std::endl;
+        std::cout << table2["charizard"] << std::endl;
+        std::cout << table2["squirtle"] << std::endl;
+        std::cout << table2["wartortle"] << std::endl;
+        std::cout << table2["blastoise"] << std::endl;
+        std::cout << table2["caterpie"] << std::endl;
+
+
+
+
         //treeNode<int> myTree(10);
         //myTree.insert(5);
         //myTree.insert(7);
