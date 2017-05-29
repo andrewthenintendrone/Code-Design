@@ -101,12 +101,13 @@
     <ClInclude Include="source\aie\aieMutex.h" />
     <ClInclude Include="source\aie\aieNonCopyable.h" />
     <ClInclude Include="source\aie\aieTimer.h" />
-    <ClInclude Include="source\digitalRoot.h" />
     <ClInclude Include="source\HashFunction.h" />
     <ClInclude Include="source\HashTable.h" />
     <ClInclude Include="source\linkedList.h" />
+    <ClInclude Include="source\misc.h" />
     <ClInclude Include="source\sumTo.h" />
     <ClInclude Include="source\treeNode.h" />
+    <ClInclude Include="source\UnitTest.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

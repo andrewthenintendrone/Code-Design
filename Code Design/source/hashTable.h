@@ -11,6 +11,7 @@ public:
     Bucket()
     {
         name.clear();
+        data = 0;
     }
     ~Bucket()
     {
