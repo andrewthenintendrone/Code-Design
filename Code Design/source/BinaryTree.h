@@ -8,13 +8,13 @@ template<typename T>
 class TreeNode
 {
 public:
-    TreeNode() : left(nullptr), right(nullptr) {}
+    TreeNode() : parent(nullptr), left(nullptr), right(nullptr) {}
     ~TreeNode() {}
 
     T value;
-    TreeNode* parent;
-    TreeNode* left;
-    TreeNode* right;
+    TreeNode<T>* parent;
+    TreeNode<T>* left;
+    TreeNode<T>* right;
 };
 
 //################################################//
@@ -66,7 +66,11 @@ public:
     // removes the TreeNode with the value of searchValue
     void remove(T searchValue)
     {
-        remove(search(searchValue));
+        TreeNode<T>* foundNode = search(searchValue, root);
+        if (foundNode != nullptr)
+        {
+            remove(foundNode);
+        }
     }
 
 private:
@@ -105,7 +109,7 @@ private:
             {
                 currentNode->left = new TreeNode<T>;
                 currentNode->left->value = newValue;
-                currentNode->parent = currentNode;
+                currentNode->left->parent = currentNode;
             }
         }
         else if (newValue >= currentNode->value)
@@ -118,7 +122,7 @@ private:
             {
                 currentNode->right = new TreeNode<T>;
                 currentNode->right->value = newValue;
-                currentNode->parent = currentNode;
+                currentNode->right->parent = currentNode;
             }
         }
     }
@@ -140,44 +144,25 @@ private:
         }
     }
 
+    // removes this treeNode from the tree
     void remove(TreeNode<T>* node)
     {
-        // 2 children
-        if (node->left != nullptr && node != nullptr)
+        if (node)
         {
-            // find the treeNode with the smallest value larger than this treeNodes value
-            TreeNode<T>* targetNode = node->right;
-
-            while (targetNode->left != nullptr)
+            // 2 children
+            if ((node->left) && (node->right))
             {
-                targetNode = targetNode->left;
+                std::cout << "2 children";
             }
-
-            // copy that treeNodes value
-            node->value = targetNode->value;
-
-            // remove the target treeNode
-            remove(targetNode);
-        }
-        // 1 child
-        else if ((node->left != nullptr) ^ (node->right != nullptr))
-        {
-            if (node->parent != nullptr)
+            // 1 child
+            if ((!node->left) ^ (!node->right))
             {
-                TreeNode<T>* parentLink = (node == node->parent->left ? node->parent->left : node->parent->right);
-                parentLink = nullptr;
-                std::cout << "removing a node with a value of " << node->value << std::endl;
-                delete node;
+                
             }
-        }
-        // 0 children
-        else if (node->left == nullptr && node->right == nullptr)
-        {
-            if (node->parent != nullptr)
+            // 0 children
+            if ((!node->left) && (!node->right))
             {
-                TreeNode<T>* parentLink = (node == node->parent->left ? node->parent->left : node->parent->right);
-                parentLink = nullptr;
-                std::cout << "removing a node with a value of " << node->value << std::endl;
+                node = nullptr;
                 delete node;
             }
         }
