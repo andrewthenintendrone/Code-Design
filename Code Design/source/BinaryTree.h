@@ -2,7 +2,7 @@
 #include "aieException.h"
 
 //################################################//
-//  Tree Node Class                               //
+//  Binary Tree Class                             //
 //################################################//
 template<typename dataType>
 class treeNode

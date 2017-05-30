@@ -62,12 +62,6 @@
     <ClInclude Include="source\aie\aieTimer.h">
       <Filter>Source Files\aie</Filter>
     </ClInclude>
-    <ClInclude Include="source\sumTo.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="source\treeNode.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
     <ClInclude Include="source\HashFunction.h">
       <Filter>Source Files</Filter>
     </ClInclude>
@@ -78,6 +72,9 @@
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="source\misc.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\BinaryTree.h">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>

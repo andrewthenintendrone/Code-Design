@@ -105,8 +105,7 @@
     <ClInclude Include="source\HashTable.h" />
     <ClInclude Include="source\linkedList.h" />
     <ClInclude Include="source\misc.h" />
-    <ClInclude Include="source\sumTo.h" />
-    <ClInclude Include="source\treeNode.h" />
+    <ClInclude Include="source\BinaryTree.h" />
     <ClInclude Include="source\UnitTest.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
