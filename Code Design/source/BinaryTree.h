@@ -11,6 +11,8 @@ public:
     TreeNode() : parent(nullptr), left(nullptr), right(nullptr) {}
     ~TreeNode() {}
 
+
+
     T value;
     TreeNode<T>* parent;
     TreeNode<T>* left;
@@ -161,14 +163,15 @@ private:
                     node->parent->right = nullptr;
                 }
                 std::cout << "removing a node with a value of " << node->value << std::endl;
-                delete node;
             }
+            delete node;
         }
 
         // 1 child
         else if ((!node->left) ^ (!node->right))
         {
-            if (node->parent)
+            // node is not the root node
+            if (node != root)
             {
                 // node is on parents left
                 if (node->value < node->parent->value)
@@ -202,16 +205,31 @@ private:
                         node->right->parent = node->parent;
                     }
                 }
-
-                std::cout << "removing a node with a value of " << node->value << std::endl;
-                delete node;
             }
+            // node is the root node
+            else
+            {
+                // nodes child is on left
+                if (node->left)
+                {
+                    node->left->parent = node->parent;
+                    root = node->left;
+                }
+                // nodes child is on right
+                else
+                {
+                    node->right->parent = node->parent;
+                    root = node->right;
+                }
+            }
+            std::cout << "removing a node with a value of " << node->value << std::endl;
+            delete node;
         }
 
         // 2 children
         else
         {
-            // find the treeNode with the smallest value larger than this treeNodes value
+            // find the TreeNode with the smallest value larger than this TreeNodes value
             TreeNode<T>* targetNode = node->right;
 
             while (targetNode->left)
