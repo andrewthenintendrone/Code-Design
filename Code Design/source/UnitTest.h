@@ -13,7 +13,7 @@
 bool runUnitTest()
 {
 
-    // List
+    // LinkedList tests
     std::cout << "Creating List" << std::endl;
     LinkedList<int> myList;
     std::cout << "List successfully created" << std::endl;
@@ -24,8 +24,14 @@ bool runUnitTest()
         myList.pushBack(i);
         std::cout << i << " ";
     }
-
     std::cout << "\nAll items added to List" << std::endl;
+
+    std::cout << "Reading items from list" << std::endl;
+    for (auto iter = myList.begin(); iter != myList.end(); iter++)
+    {
+        std::cout << iter.getNode()->value << " ";
+    }
+    std::cout << "\nAll items read from List" << std::endl;
 
     // test Linked List against
     BinaryTree<int> myTree;
