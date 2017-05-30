@@ -21,7 +21,7 @@ public:
 //  Linked List Class                             //
 //################################################//
 template<typename dataType>
-class List
+class LinkedList
 {
 public:
     //################################################//
@@ -55,7 +55,7 @@ public:
     };
 
     // constructor
-    List() : m_front(nullptr), m_back(nullptr), size(0) { }
+    LinkedList() : m_front(nullptr), m_back(nullptr), size(0) { }
 
     // adds a ListNode to the front of the List
     void pushFront(dataType value)
@@ -180,7 +180,7 @@ public:
     // removes ListNodes containing values matching the input
     void remove(dataType input)
     {
-        List<dataType> temp;
+        LinkedList<dataType> temp;
 
         for (auto iter = begin(); iter != end(); iter++)
         {
@@ -231,7 +231,7 @@ public:
     }
 
     // overloaded = operator
-    void operator = (List* newList)
+    void operator = (LinkedList* newList)
     {
         clear();
         for (auto iter = newList->begin(); iter != newList->end(); iter++)

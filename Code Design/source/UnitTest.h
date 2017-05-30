@@ -1,7 +1,7 @@
 #pragma once
 
 // my implementations
-#include "linkedList.h"
+#include "LinkedList.h"
 #include "BinaryTree.h"
 #include "HashTable.h"
 
@@ -12,18 +12,20 @@
 // tests that my implementations are working properly
 bool runUnitTest()
 {
-    List<int> myList;
-    for (unsigned int i = 0; i < 10; i++)
+
+    // List
+    std::cout << "Creating List" << std::endl;
+    LinkedList<int> myList;
+    std::cout << "List successfully created" << std::endl;
+    std::cout << "Adding items to list" << std::endl;
+
+    for (int i = 1; i <= 10; i++)
     {
         myList.pushBack(i);
+        std::cout << i << " ";
     }
 
-    for (auto iter = myList.begin(); iter != myList.end(); iter++)
-    {
-        std::cout << iter.getNode()->value << std::endl;
-    }
-
-
+    std::cout << "\nAll items added to List" << std::endl;
 
     // test Linked List against
     BinaryTree<int> myTree;

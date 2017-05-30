@@ -103,7 +103,7 @@
     <ClInclude Include="source\aie\aieTimer.h" />
     <ClInclude Include="source\HashFunction.h" />
     <ClInclude Include="source\HashTable.h" />
-    <ClInclude Include="source\linkedList.h" />
+    <ClInclude Include="source\LinkedList.h" />
     <ClInclude Include="source\misc.h" />
     <ClInclude Include="source\BinaryTree.h" />
     <ClInclude Include="source\UnitTest.h" />

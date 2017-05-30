@@ -41,9 +41,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="source\linkedList.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
     <ClInclude Include="source\aie\aieException.h">
       <Filter>Source Files\aie</Filter>
     </ClInclude>
@@ -75,6 +72,9 @@
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="source\BinaryTree.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\LinkedList.h">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>
