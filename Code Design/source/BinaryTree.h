@@ -18,36 +18,102 @@ class BinaryTree
 {
 public:
     // constructors and destructors
-    BinaryTree() : root = nullptr; {}
-    ~BinaryTree() { destroyTree(); }
+    BinaryTree() { root = nullptr; }
+    ~BinaryTree() { destroy(); }
 
-    void insert(T key);
-    TreeNode* search(T key);
-    void destroy();
+    void insert(T newValue)
+    {
+        if (root != nullptr)
+        {
+            insert(newValue, root);
+        }
+        else
+        {
+            root = new TreeNode<T>;
+            root->value = newValue;
+            root->left = nullptr;
+            root->right = nullptr;
+        }
+    }
+
+    TreeNode<T>* search(T searchValue)
+    {
+        return search(searchValue, root);
+    }
+
+    void destroy()
+    {
+        destroy(root);
+    }
 
 private:
-    TreeNode* search(T key, TreeNode* leaf);
-
-    void insert(T key, TreeNode* leaf)
+    TreeNode<T>*search(T searchValue, TreeNode<T>* currentNode)
     {
-        if (key < leaf->value)
+        if (currentNode != nullptr)
         {
-            if (leaf->left != nullptr)
+            if (searchValue == currentNode->value)
             {
-                insert()
+                return currentNode;
+            }
+            if (searchValue < currentNode->value)
+            {
+                return search(searchValue, currentNode->left);
+            }
+            else
+            {
+                return search(searchValue, currentNode->right);
+            }
+        }
+        else
+        {
+            return nullptr;
+        }
+    }
+
+    void insert(T newValue, TreeNode<T>* currentNode)
+    {
+        if (newValue < currentNode->value)
+        {
+            if (currentNode->left != nullptr)
+            {
+                insert(newValue, currentNode->left);
+            }
+            else
+            {
+                currentNode->left = new TreeNode<T>;
+                currentNode->left->value = newValue;
+                // new leaf has no children yet
+                currentNode->left->left = nullptr;
+                currentNode->left->right = nullptr;
+            }
+        }
+        else if (newValue >= currentNode->value)
+        {
+            if (currentNode->right != nullptr)
+            {
+                insert(newValue, currentNode->right);
+            }
+            else
+            {
+                currentNode->right = new TreeNode<T>;
+                currentNode->right->value = newValue;
+                // new leaf has no children yet
+                currentNode->right->left = nullptr;
+                currentNode->right->right = nullptr;
             }
         }
     }
 
     // destroys everything under the given leaf
-    void destroy(TreeNode* leaf)
+    void destroy(TreeNode<T>* currentNode)
     {
-        if (leaf != nullptr)
+        if (currentNode != nullptr)
         {
-            destroyTree(leaf->left);
-            destroyTree(leaf->right);
-            delete leaf;
+            destroy(currentNode->left);
+            destroy(currentNode->right);
+            delete currentNode;
         }
     }
-    TreeNode* root;
+
+    TreeNode<T>* root;
 };
