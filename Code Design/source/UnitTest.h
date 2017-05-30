@@ -15,20 +15,15 @@
 bool runUnitTest()
 {
     BinaryTree<int> myTree;
-    myTree.insert(50);
-    myTree.insert(92);
-    myTree.insert(74);
-    myTree.insert(36);
-    myTree.insert(49);
-    myTree.insert(28);
-    myTree.insert(61);
-    myTree.insert(90);
-    myTree.insert(33);
-    myTree.insert(36);
+    myTree.insert(10);
+    myTree.insert(5);
+    myTree.insert(7);
+    myTree.insert(15);
+    myTree.insert(12);
+    myTree.insert(17);
+    myTree.insert(14);
 
-    if (myTree.search(36)->value == 36)
-    {
-        return true;
-    }
+    myTree.remove(10);
+
     return false;
 }
