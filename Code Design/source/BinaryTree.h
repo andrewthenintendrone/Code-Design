@@ -174,7 +174,7 @@ private:
                 if (node->value < node->parent->value)
                 {
                     // nodes child is on left
-                    if (node->left->value < node->value)
+                    if (node->left)
                     {
                         node->parent->left = node->left;
                         node->left->parent = node->parent;
@@ -190,10 +190,10 @@ private:
                 else
                 {
                     // nodes child is on left
-                    if (node->left->value < node->value)
+                    if (node->left)
                     {
                         node->parent->right = node->left;
-                        node->left ->parent = node->parent;
+                        node->left->parent = node->parent;
                     }
                     // nodes child is on right
                     else
