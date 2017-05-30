@@ -144,27 +144,86 @@ private:
         }
     }
 
-    // removes this treeNode from the tree
+    // removes a treeNode from the tree
     void remove(TreeNode<T>* node)
     {
-        if (node)
+        // 0 children
+        if (!node->left && !node->right)
         {
-            // 2 children
-            if ((node->left) && (node->right))
+            if (node->parent)
             {
-                std::cout << "2 children";
-            }
-            // 1 child
-            if ((!node->left) ^ (!node->right))
-            {
-                
-            }
-            // 0 children
-            if ((!node->left) && (!node->right))
-            {
-                node = nullptr;
+                if (node == node->parent->left)
+                {
+                    node->parent->left = nullptr;
+                }
+                else
+                {
+                    node->parent->right = nullptr;
+                }
+                std::cout << "removing a node with a value of " << node->value << std::endl;
                 delete node;
             }
+        }
+
+        // 1 child
+        else if ((!node->left) ^ (!node->right))
+        {
+            if (node->parent)
+            {
+                // node is on parents left
+                if (node->value < node->parent->value)
+                {
+                    // nodes child is on left
+                    if (node->left->value < node->value)
+                    {
+                        node->parent->left = node->left;
+                        node->left->parent = node->parent;
+                    }
+                    // nodes child is on right
+                    else
+                    {
+                        node->parent->left = node->right;
+                        node->right->parent = node->parent;
+                    }
+                }
+                // node is on parents right
+                else
+                {
+                    // nodes child is on left
+                    if (node->left->value < node->value)
+                    {
+                        node->parent->right = node->left;
+                        node->left ->parent = node->parent;
+                    }
+                    // nodes child is on right
+                    else
+                    {
+                        node->parent->right = node->right;
+                        node->right->parent = node->parent;
+                    }
+                }
+
+                std::cout << "removing a node with a value of " << node->value << std::endl;
+                delete node;
+            }
+        }
+
+        // 2 children
+        else
+        {
+            // find the treeNode with the smallest value larger than this treeNodes value
+            TreeNode<T>* targetNode = node->right;
+
+            while (targetNode->left)
+            {
+                targetNode = targetNode->left;
+            }
+
+            // copy that treeNodes value
+            node->value = targetNode->value;
+
+            // remove the target treeNode
+            remove(targetNode);
         }
     }
 

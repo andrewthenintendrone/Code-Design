@@ -22,7 +22,7 @@ bool runUnitTest()
     myTree.insert(15);
     myTree.insert(12);
 
-    myTree.remove(12);
+    myTree.remove(15);
 
     return false;
 }
