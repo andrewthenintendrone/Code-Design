@@ -16,6 +16,7 @@ public:
     ~Bucket()
     {
         name.clear();
+        data = 0;
     }
 
     // overloads
@@ -126,6 +127,19 @@ public:
         delete[] m_buckets;
     }
 
+    // removes an element
+    bool remove(std::string& bucketName)
+    {
+        Bucket<dataType>* foundBucket = &getBucketByKey(bucketName);
+        if (foundBucket->name == bucketName)
+        {
+            foundBucket->name.clear();
+            foundBucket->data = 0;
+            return true;
+        }
+        return false;
+    }
+
     // = overload
     HashTable& operator = (HashTable& otherHashTable)
     {
@@ -141,10 +155,6 @@ public:
     }
 
 protected:
-    HashFunction::HashFunc hashFunction;
-    Bucket<dataType>* m_buckets;
-    unsigned int m_size;
-
     // returns the address of a bucket specified by a key
     Bucket<dataType>& getBucketByKey(std::string& key)
     {
@@ -171,4 +181,7 @@ protected:
             }
         }
     }
+    HashFunction::HashFunc hashFunction;
+    Bucket<dataType>* m_buckets;
+    unsigned int m_size;
 };
