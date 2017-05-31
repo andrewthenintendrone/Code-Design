@@ -162,7 +162,6 @@ private:
                 {
                     node->parent->right = nullptr;
                 }
-                std::cout << "removing a node with a value of " << node->value << std::endl;
             }
             delete node;
         }
@@ -222,7 +221,6 @@ private:
                     root = node->right;
                 }
             }
-            std::cout << "removing a node with a value of " << node->value << std::endl;
             delete node;
         }
 
