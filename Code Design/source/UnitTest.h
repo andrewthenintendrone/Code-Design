@@ -244,19 +244,32 @@ bool runUnitTest()
 
     std::cout << std::endl << "All items added to HashTable" << std::endl << std::endl;
 
-
-    // get an element from the user
-    std::cout << "Input an element from the periodic table: ";
     std::string chosenElement;
-    std::cin >> chosenElement;
-    std::cout << myHashTable[chosenElement];
-    if(!myHashTable.remove(chosenElement))
+    bool validElement = false;
+    while (validElement == false)
     {
-        std::cout << chosenElement << " was not successfully removed" << std::endl;
-        system("pause");
-        return false;
+        // get an element from the user
+        std::cout << "Input an element from the periodic table: ";
+        std::cin >> chosenElement;
+        for (char & c : chosenElement)
+        {
+            c = (c == chosenElement[0] ? toupper(c) : tolower(c));
+        }
+        std::cout << "Element ";
+        if (myHashTable[chosenElement] != 0)
+        {
+            validElement = true;
+            std::cout << myHashTable[chosenElement] << " (also known as " << chosenElement << ") ";
+            if (myHashTable.remove(chosenElement))
+            {
+                std::cout << " was successfully removed" << std::endl;
+            }
+        }
+        else
+        {
+            std::cout << chosenElement << " could not be found." << std::endl;
+        }
     }
-    std::cout << chosenElement << " was successfully removed" << std::endl << std::endl;
 
     system("pause");
 
