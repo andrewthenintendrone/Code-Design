@@ -4,6 +4,7 @@
 #include "LinkedList.h"
 #include "BinaryTree.h"
 #include "HashTable.h"
+#include "GameManager.h"
 
 // extra includes
 #include <iostream>
@@ -12,6 +13,7 @@
 // tests that my implementations are working properly
 bool runUnitTest()
 {
+#pragma region Linked List
     //################################################//
     //  Linked List Tests                             //
     //################################################//
@@ -50,7 +52,9 @@ bool runUnitTest()
 
     std::cout << "LinkedList successfully cleared" << std::endl << std::endl;
     system("pause");
+#pragma endregion
 
+#pragma region Binary Tree
     //################################################//
     //  BinaryTree Tests                              //
     //################################################//
@@ -111,7 +115,9 @@ bool runUnitTest()
     std::cout << "TreeNode was successfully removed" << std::endl << std::endl << std::endl;
 
     system("pause");
+#pragma endregion
 
+#pragma region Hash Table
     //################################################//
     //  HashTable Tests                               //
     //################################################//
@@ -272,7 +278,17 @@ bool runUnitTest()
     }
 
     system("pause");
+#pragma endregion
 
-
+#pragma region Game State
+    //################################################//
+    //  GameState Tests                               //
+    //################################################//
+    system("cls");
+    if (!GAMEMANAGER->runUnitTests())
+    {
+        return false;
+    }
+#pragma endregion
     return true;
 }

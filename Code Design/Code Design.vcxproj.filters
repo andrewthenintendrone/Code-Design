@@ -16,6 +16,9 @@
     <Filter Include="Source Files\aie">
       <UniqueIdentifier>{ea378f91-bfdb-4327-b850-6ffcb9ae06b8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\gameState">
+      <UniqueIdentifier>{898696d5-49fd-4236-9391-c3564a4945c2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\main.cpp">
@@ -38,6 +41,12 @@
     </ClCompile>
     <ClCompile Include="source\HashFunction.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\StateManager.cpp">
+      <Filter>Source Files\gameState</Filter>
+    </ClCompile>
+    <ClCompile Include="source\GameManager.cpp">
+      <Filter>Source Files\gameState</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -76,6 +85,12 @@
     </ClInclude>
     <ClInclude Include="source\LinkedList.h">
       <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\StateManager.h">
+      <Filter>Source Files\gameState</Filter>
+    </ClInclude>
+    <ClInclude Include="source\GameManager.h">
+      <Filter>Source Files\gameState</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

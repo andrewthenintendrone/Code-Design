@@ -91,8 +91,10 @@
     <ClCompile Include="source\aie\aieLog.cpp" />
     <ClCompile Include="source\aie\aieMutex.cpp" />
     <ClCompile Include="source\aie\aieTimer.cpp" />
+    <ClCompile Include="source\GameManager.cpp" />
     <ClCompile Include="source\HashFunction.cpp" />
     <ClCompile Include="source\main.cpp" />
+    <ClCompile Include="source\StateManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\aie\aieException.h" />
@@ -101,11 +103,13 @@
     <ClInclude Include="source\aie\aieMutex.h" />
     <ClInclude Include="source\aie\aieNonCopyable.h" />
     <ClInclude Include="source\aie\aieTimer.h" />
+    <ClInclude Include="source\GameManager.h" />
     <ClInclude Include="source\HashFunction.h" />
     <ClInclude Include="source\HashTable.h" />
     <ClInclude Include="source\LinkedList.h" />
     <ClInclude Include="source\misc.h" />
     <ClInclude Include="source\BinaryTree.h" />
+    <ClInclude Include="source\StateManager.h" />
     <ClInclude Include="source\UnitTest.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
