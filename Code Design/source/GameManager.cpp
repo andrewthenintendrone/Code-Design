@@ -82,6 +82,7 @@ bool GameManager::runUnitTests()
     }
 
     std::cout << "Game State tests passed" << std::endl;
+    return true;
 }
 
 #pragma region update functions
